@@ -7,4 +7,4 @@ require_relative '../lib/dish.rb'
 puts "Welcome to Yourmet"
 
 
-Restaurant.get_rest_data
+Restaurant.data
