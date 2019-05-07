@@ -1,5 +1,8 @@
 class User < ActiveRecord::Base
 
+  has_many :favorites
+  has_many :restaurants, through: :favorites 
+
   def favorite_restaurants
     #lists favorite restaurants
   end
