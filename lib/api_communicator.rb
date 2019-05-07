@@ -4,6 +4,9 @@ require 'pry'
 
 def get_restaurant_violations(restaurant)
 response_string = RestClient.get('https://data.cityofnewyork.us/api/views/43nn-pn8j/rows.json?accessType=DOWNLOAD')
+
+  # constrain search scope
+
   response_hash = JSON.parse(response_string)
   response_array = response_hash
 

@@ -28,6 +28,8 @@ Goals:
    - ability to delete instances
    - [ ] Adam
 
+8. General prettying up
+
 Model:
 ```
 (User)---<[Favs]>---(Restaurant)---<[Inspx]>---(Violtns)
@@ -61,8 +63,9 @@ CLI Flowchart:
      - delete (by name? or number)
      - exit -> go to 3
 
-
-https://github.com/learn-co-students/collaborating-with-git-crash-course
+Helpful Links:
+[Collaborating with Git](https://github.com/learn-co-students/collaborating-with-git-crash-course)
+[NYC OpenData](https://data.cityofnewyork.us/Health/DOHMH-New-York-City-Restaurant-Inspection-Results/43nn-pn8j/data)
 
 Stretch Goals
 - Ability to search by Violation and/or Grade
