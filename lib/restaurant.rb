@@ -12,7 +12,6 @@ class Restaurant < ActiveRecord::Base
     string = response.body
     data = JSON.parse(string)
 
-    binding.pry
     data
   end
 
