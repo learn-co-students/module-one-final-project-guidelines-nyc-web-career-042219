@@ -1,20 +1,32 @@
 Goals:
 
 1. Create User instance and save to database
+   - [] Adam
+
 2. Fix matching of restaurant input with api
    - make sure the correct restaurant is returned
    - verify array fields are being correctly queried
+   - [] Henry
+
 3. Constrain search scope to Manhattan
+   - [] Adam
+
 4. Create Restaurant instance and save to database
    - also create Inspection instance
    - also create Violation instance(s)
+   - [] Henry
+
 5. Have restaurant profile display correctly
+   - [] Adam
+
 6. Implement favorite functionality
    - create Favorite instance
+   - [] Henry
+
 7. Implement favorites list
    - display favorites correctly
    - ability to delete instances
-
+   - [] Adam
 
 Model:
 ```
