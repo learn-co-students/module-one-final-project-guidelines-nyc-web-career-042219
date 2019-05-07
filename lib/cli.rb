@@ -34,8 +34,8 @@ end
 
 
 def main_menu(user)
-
-  puts "1. Search for a restaurant"
+  puts " "
+  puts "1. Search for a restaurant by cuisine"
   puts "2. Look up your favorite dishes"
   puts "3. Check into a restaurant"
   puts "4. Exit"
@@ -44,16 +44,44 @@ input = gets.chomp
 
   case input
   when "1"
-    puts "selected 1"
+    Restaurant.search_by_cuisine(user)
   when "2"
     user.print_dishes
+    main_menu(user)
   when "3"
     puts "selected 3"
   when "4"
     exit
   else
     puts "please select 1, 2, 3, or 4 "
-    main_menu
+    main_menu(user)
   end
+
+end
+
+def rest_search_menu
+  puts "1. Search for a restaurant by location"
+  puts "2. Search for a restaurant by cuisine"
+  puts "3. Return to main menu"
+  puts "4. Exit"
+
+  input = gets.chomp
+
+    case input
+    when "1"
+      puts "selected 1"
+    when "2"
+      puts "Enter desired cuisine"
+      cuisine = gets.chomp
+      Restaurant.search_by_cuisine(cuisine)
+    when "3"
+      main_menu
+    when "4"
+      exit
+    else
+      puts "please select 1, 2, 3, or 4 "
+      main_menu
+    end
+
 
 end
