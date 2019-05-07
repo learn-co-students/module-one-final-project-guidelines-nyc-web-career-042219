@@ -1,8 +1,8 @@
 require_relative '../config/environment'
+require "../lib"
 
 
 
-puts "HELLO WORLD"
 
 def getdata
 request = RestClient::Request.execute(

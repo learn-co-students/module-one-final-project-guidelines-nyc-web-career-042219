@@ -1,2 +1,6 @@
+require_relative '../bin/api_communicator'
+
 class Wallet < ActiveRecord::Base
-end 
+  belongs_to :users
+  belongs_to :coins
+end
