@@ -5,7 +5,6 @@ class LeslieEnding
     "the world needs you.",
     "you butter my biscuit.",
     "you are smart as a whip."
-    "you are a bundle of joy."
   ]
 
   def self.ending

@@ -10,11 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190507135942) do
+ActiveRecord::Schema.define(version: 20190507194715) do
 
   create_table "compliments", force: :cascade do |t|
     t.string "content"
-    t.float  "rating"
   end
 
   create_table "user_compliments", force: :cascade do |t|
@@ -29,8 +28,6 @@ ActiveRecord::Schema.define(version: 20190507135942) do
 
   create_table "users", force: :cascade do |t|
     t.string "first_name"
-    t.string "last_name"
-    t.string "username"
     t.string "phone_number"
   end
 
