@@ -1,7 +1,7 @@
 Goals:
 
 1. Create User instance and save to database
-   - [ ] Adam
+   - [x] Adam
 
 2. Fix matching of restaurant input with api
    - make sure the correct restaurant is returned
