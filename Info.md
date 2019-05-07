@@ -1,3 +1,4 @@
+Goals:
 
 1. Create User instance and save to database
 2. Fix matching of restaurant input with api
@@ -12,8 +13,7 @@
    - create Favorite instance
 7. Implement favorites list
    - display favorites correctly
-   - ability to delete instances 
-
+   - ability to delete instances
 
 
 Model:
@@ -52,36 +52,38 @@ CLI Flowchart:
 https://github.com/learn-co-students/collaborating-with-git-crash-course
 
 Stretch Goals
+- Ability to search by Violation and/or Grade
 - Display "Action" field in profile
 - Display "Score" field in profile
 - Option to show Top Ten Worst restaurant
+- Anything to do with zipcode/geo stuff
 
 
- # restaurant_inspection_array[0] = Row ID
- # restaurant_inspection_array[1] = ?
- # restaurant_inspection_array[2] = ?
- # restaurant_inspection_array[3] = ?
- # restaurant_inspection_array[4] = ?
- # restaurant_inspection_array[5] = ?
- # restaurant_inspection_array[6] = ?
- # restaurant_inspection_array[7] = ?
- # restaurant_inspection_array[8] = CAMIS Number
- # restaurant_inspection_array[9] = Restaurant Name
- # restaurant_inspection_array[10] = Borough
- # restaurant_inspection_array[11] = Address Building No.
- # restaurant_inspection_array[12] = Address Street
- # restaurant_inspection_array[13] = Zipcode
- # restaurant_inspection_array[14] = Phone
- # restaurant_inspection_array[15] = Cuisine
- # restaurant_inspection_array[16] = Inspection Date
- # restaurant_inspection_array[17] = Action
- # restaurant_inspection_array[18] = Violation Code
- # restaurant_inspection_array[19] = Violation Desc.
- # restaurant_inspection_array[20] = Critical Flag
- # restaurant_inspection_array[21] = Score
- # restaurant_inspection_array[22] = Grade
- # restaurant_inspection_array[23] = Grade Date
- # restaurant_inspection_array[24] = Record Date
- # restaurant_inspection_array[25] = Inspection Type
- # restaurant_inspection_array[26] = ?
- # restaurant_inspection_array[27] = ?
+restaurant_inspection_array[0] = Row ID
+restaurant_inspection_array[1] = ?
+restaurant_inspection_array[2] = ?
+restaurant_inspection_array[3] = ?
+restaurant_inspection_array[4] = ?
+restaurant_inspection_array[5] = ?
+restaurant_inspection_array[6] = ?
+restaurant_inspection_array[7] = ?
+restaurant_inspection_array[8] = CAMIS Number
+restaurant_inspection_array[9] = Restaurant Name
+restaurant_inspection_array[10] = Borough
+restaurant_inspection_array[11] = Address Building No.
+restaurant_inspection_array[12] = Address Street
+restaurant_inspection_array[13] = Zipcode
+restaurant_inspection_array[14] = Phone
+restaurant_inspection_array[15] = Cuisine
+restaurant_inspection_array[16] = Inspection Date
+restaurant_inspection_array[17] = Action
+restaurant_inspection_array[18] = Violation Code
+restaurant_inspection_array[19] = Violation Desc.
+restaurant_inspection_array[20] = Critical Flag
+restaurant_inspection_array[21] = Score
+restaurant_inspection_array[22] = Grade
+restaurant_inspection_array[23] = Grade Date
+restaurant_inspection_array[24] = Record Date
+restaurant_inspection_array[25] = Inspection Type
+restaurant_inspection_array[26] = ?
+restaurant_inspection_array[27] = ?
