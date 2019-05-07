@@ -17,13 +17,14 @@ Goals:
 
 
 Model:
-
+```
 (User)---<[Favs]>---(Restaurant)---<[Inspx]>---(Violtns)
 
 Name	     User.id   Name	           Resto.id   Code
 	         Resto.id  Cuisine	       Viol.id    Description
 		                 Address	       Date
 				                             Grade
+```
 
 CLI Flowchart:
 
@@ -58,7 +59,7 @@ Stretch Goals
 - Option to show Top Ten Worst restaurant
 - Anything to do with zipcode/geo stuff
 
-
+```
 restaurant_inspection_array[0] = Row ID
 restaurant_inspection_array[1] = ?
 restaurant_inspection_array[2] = ?
@@ -87,3 +88,4 @@ restaurant_inspection_array[24] = Record Date
 restaurant_inspection_array[25] = Inspection Type
 restaurant_inspection_array[26] = ?
 restaurant_inspection_array[27] = ?
+```
