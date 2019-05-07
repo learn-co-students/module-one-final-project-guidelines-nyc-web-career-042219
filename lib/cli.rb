@@ -58,30 +58,3 @@ input = gets.chomp
   end
 
 end
-
-def rest_search_menu
-  puts "1. Search for a restaurant by location"
-  puts "2. Search for a restaurant by cuisine"
-  puts "3. Return to main menu"
-  puts "4. Exit"
-
-  input = gets.chomp
-
-    case input
-    when "1"
-      puts "selected 1"
-    when "2"
-      puts "Enter desired cuisine"
-      cuisine = gets.chomp
-      Restaurant.search_by_cuisine(cuisine)
-    when "3"
-      main_menu
-    when "4"
-      exit
-    else
-      puts "please select 1, 2, 3, or 4 "
-      main_menu
-    end
-
-
-end

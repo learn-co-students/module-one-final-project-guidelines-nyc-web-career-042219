@@ -24,7 +24,9 @@ class Restaurant < ActiveRecord::Base
     puts "3. Indian"
     puts "4. Cafe"
     puts "5. Mediterranean"
-    puts "6. Return to main menu"
+    puts "6. American"
+    puts "7. Mexican"
+    puts "8. Return to main menu"
 
     input = gets.chomp
 
@@ -40,6 +42,10 @@ class Restaurant < ActiveRecord::Base
     when "5"
       cuisine = 70
     when "6"
+      cuisine = 1
+    when "7"
+      cuisine = 136
+    when "8"
       main_menu
     else
       puts "please select 1, 2, 3, or 4 "
