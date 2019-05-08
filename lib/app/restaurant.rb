@@ -6,6 +6,9 @@ class Restaurant < ActiveRecord::Base
   has_many :violations, through: :inspections
 
 
+  def find_in_db
+
+  end
   
   def latest_inspection
     self.inspections.first

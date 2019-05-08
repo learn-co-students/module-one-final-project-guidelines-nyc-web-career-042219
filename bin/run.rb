@@ -7,7 +7,15 @@ user_name = get_user_name_from_user
 user = User.find_or_create_by(name: user_name)
 
 restaurant_name = get_restaurant_input
-get_restaurant_violations(restaurant_name)
+find_in_db(restaurant_name)
+  #return restaurant object
+  if nil
+    populate_db_from_json(restaurant_name)
+    #return restaurant object
+  end
+
+
+
 
 puts "HELLO WORLD"
 
