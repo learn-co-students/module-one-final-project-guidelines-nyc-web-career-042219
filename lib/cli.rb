@@ -48,7 +48,7 @@ input = gets.chomp
   when "2"
     # user.print_dishes
     dish_cat(user)
-    # main_menu(user) ##dish_cat should return us to main menu
+    main_menu(user) ##dish_cat should return us to main menu
   when "3"
     #binding.pry
     user.check_into_rest
@@ -61,8 +61,7 @@ input = gets.chomp
   end
 
 end
-<<<<<<< HEAD
-=======
+
 
 def dish_cat(user)
   puts " "
@@ -82,10 +81,10 @@ def dish_cat(user)
       cat = 'appetizer'
       user.dish_list(cat)
     when "3"
-      cat = 'Entree'
+      cat = 'entree'
       user.dish_list(cat)
     when "4"
-      cat = 'Dessert'
+      cat = 'dessert'
       user.dish_list(cat)
     when "5"
       user.print_dishes
@@ -124,4 +123,3 @@ def rest_search_menu
 
 
 end
->>>>>>> first_branch_c
