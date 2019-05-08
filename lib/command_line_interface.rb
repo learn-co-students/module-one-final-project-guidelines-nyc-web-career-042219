@@ -44,11 +44,6 @@ def get_user_name_from_user
   user_name
 end
 
-def hello(user)
-  # if returning user...
-  puts "...Welcome back, #{user.name}"
-end
-
 def get_restaurant_name
   puts "Which restaurant would you like to check out?"
   input = gets.chomp
