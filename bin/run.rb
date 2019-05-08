@@ -4,7 +4,8 @@ require_relative '../lib/command_line_interface.rb'
 
 welcome
 user_name = get_user_name_from_user
-find_or_create_by(user_name)
+user = User.find_or_create_by(name: user_name)
+hello(user)
 restaurant_name = get_restaurant_name
 get_restaurant_violations(restaurant_name)
 

@@ -42,12 +42,17 @@ def get_user_name_from_user
   puts "Hello, #{user_name}"
 end
 
+def hello(user)
+    "...Welcome back, #{user.name}"
+end
+
 def get_restaurant_name
   puts "which restaurant would you like to check out?"
   restaurant_name = gets.chomp
   if restaurant_name = "exit" || "q" || "quit"
     exit
   end
+  restaurant_name
 end
 
 def exit
