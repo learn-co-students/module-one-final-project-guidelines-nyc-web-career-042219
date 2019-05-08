@@ -6,7 +6,7 @@ welcome
 user_name = get_user_name_from_user
 # find_or_create_by(user_name)
 restaurant_name = get_restaurant_name
-get_restaurant_violations(restaurant_name)
+get_restaurant_input(restaurant_name)
 
 puts "HELLO WORLD"
 
