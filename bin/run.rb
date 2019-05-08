@@ -6,14 +6,17 @@ welcome
 user_name = get_user_name_from_user
 user = User.find_or_create_by(name: user_name)
 
-binding.pry
+
 
 restaurant_name = get_restaurant_input
 input = Restaurant.find_by(name: restaurant_name)
   if input == nil
-    populate_db_from_json(restaurant_name)
-    #return restaurant object
+    restaurant = populate_db_from_json(restaurant_name)
+  else
+    restaurant = input
   end
+restaurant
+
 
 
 
