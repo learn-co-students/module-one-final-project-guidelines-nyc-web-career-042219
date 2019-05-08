@@ -8,16 +8,18 @@ user = User.find_or_create_by(name: user_name)
 
 
 
-restaurant_name = get_restaurant_input
-input = Restaurant.find_by(name: restaurant_name)
-  if input == nil
-    restaurant = populate_db_from_json(restaurant_name)
-  else
-    restaurant = input
-  end
-restaurant
+# restaurant_name = get_restaurant_input
+# input = Restaurant.find_by(name: restaurant_name)
+#   if input == nil
+#     restaurant = populate_db_from_json(restaurant_name)
+#   else
+#     restaurant = input
+#   end
+# restaurant
 
+restaurant = Restaurant.all.first
 
+restaurant_menu(user, restaurant)
 
 
 puts "HELLO WORLD"
