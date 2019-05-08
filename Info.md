@@ -17,11 +17,11 @@ Goals:
    - [ ] Henry
 
 5. Have restaurant profile display correctly
-   - [ ] Adam
+   - [ ] Henry
 
 6. Implement favorite functionality
    - create Favorite instance
-   - [ ] Henry
+   - [ ] Adam
 
 7. Implement favorites list
    - display favorites correctly
