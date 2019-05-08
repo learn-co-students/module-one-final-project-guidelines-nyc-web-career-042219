@@ -6,22 +6,7 @@ class Restaurant < ActiveRecord::Base
   has_many :violations, through: :inspections
 
 
-  # def restaurant_profile
-  #   puts "#{restaurant_inspection[9]}"
-  #   puts "*" * 10
-  #   puts "#{restaurant_inspection[-4]} - #{restaurant_inspection[-3]}"
-  #
-  # end
-  # def new_restaurant(rest_name)
-  #   restaurant = Restaurant.new
-  #   restaurant.name = restaurant_inspection[9]
-  #   restaurant.address = restaurant_inspection[11], restaurant_inspection[12]
-  #   restaurant.zipcode = restaurant_inspection[13]
-  #   restaurant.cuisine = restaurant_inspection[15]
-  #   restaurant.save
-  #   restaurant
-  # end
-
+  
   def latest_inspection
     self.inspections.first
   end
@@ -40,6 +25,7 @@ class Restaurant < ActiveRecord::Base
     puts "*" * 20
     puts ""
   end
+
 
 
 

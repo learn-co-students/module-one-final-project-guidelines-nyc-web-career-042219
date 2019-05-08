@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 3) do
+ActiveRecord::Schema.define(version: 4) do
 
   create_table "favorites", force: :cascade do |t|
     t.integer "user_id"
@@ -37,9 +37,9 @@ ActiveRecord::Schema.define(version: 3) do
   end
 
   create_table "violations", force: :cascade do |t|
-    t.string  "code"
-    t.string  "description"
-    t.boolean "critical"
+    t.string "code"
+    t.string "description"
+    t.string "critical"
   end
 
 end

@@ -37,11 +37,7 @@ def get_restaurant_violations(restaurant)
   #refactor as find_or_create_by
   violation.code = first_inspection[18]
   violation.description = first_inspection[19]
-    if first_inspection[20]
-      violation.critical = true
-    else
-      violation.critical = false
-    end
+  violation.critical = first_inspection[20]
   violation.save
   binding.pry
   restaurant.profile
