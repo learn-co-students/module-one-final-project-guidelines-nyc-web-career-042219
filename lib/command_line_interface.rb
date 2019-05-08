@@ -39,17 +39,21 @@ end
 def get_user_name_from_user
   puts "please enter your name"
   user_name = gets.chomp
+
   puts "Hello, #{user_name}!"
+  user_name
 end
 
 def get_restaurant_name
   puts "Which restaurant would you like to check out?"
-  restaurant_name = gets.chomp
-  # response = restaurant_name
-  #   if response == "exit" || "q" || "quit"
-  #     exit
-  #   end
-  # response
+
+
+  input = gets.chomp
+  # if input = "exit" || "q" || "quit"
+  #   exit
+  # end
+  input
+
 end
 
 def exit

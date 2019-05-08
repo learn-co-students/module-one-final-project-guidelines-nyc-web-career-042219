@@ -32,11 +32,13 @@ viol2 = Violation.create(
 
 fav1 = Favorite.create(
   :user_id => 1,
-  :restaurant_id => 1
+  :restaurant_id => 1,
+  :my_rating => 3
 )
 fav2 = Favorite.create(
   :user_id => 2,
-  :restaurant_id => 2
+  :restaurant_id => 2,
+  :my_rating => 5
 )
 
 insp1 = Inspection.create(
