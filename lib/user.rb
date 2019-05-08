@@ -42,9 +42,20 @@ class User < ActiveRecord::Base
       if dish[:category] == cat
         puts "#{dish[:name]} at #{Restaurant.find(dish.restaurant_id).name}"
       end
-      end
-      end
+    end
+  end
 
+  def decide_where_to_eat
+    rest = self.restaurants.uniq.sample
+    puts "Go eat at #{rest.name}!"
+    puts "Dishes you liked there are:"
+    counter = 1
+    self.dishes.reload.where("restaurant_id = #{rest.id}").each do |dish|
+      puts "#{counter}. #{dish.name} (#{dish.category})"
+      counter += 1
 
+    end
+
+  end
 
 end
