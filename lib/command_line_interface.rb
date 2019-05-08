@@ -43,7 +43,8 @@ def get_user_name_from_user
 end
 
 def hello(user)
-    "...Welcome back, #{user.name}"
+  # if returning user...
+  puts "...Welcome back, #{user.name}"
 end
 
 def get_restaurant_name
