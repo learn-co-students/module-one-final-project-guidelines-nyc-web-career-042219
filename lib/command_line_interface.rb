@@ -39,7 +39,9 @@ end
 def get_user_name_from_user
   puts "please enter your name"
   user_name = gets.chomp
+
   puts "Hello, #{user_name}!"
+  user_name
 end
 
 def hello(user)
