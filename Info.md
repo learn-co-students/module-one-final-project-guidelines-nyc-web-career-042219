@@ -42,26 +42,41 @@ Name	     User.id   Name	           Resto.id   Code
 
 CLI Flowchart:
 
-1. display welcome message
-2. prompt user for username [_____]
-   - create user instance + add to db
-   - exit
-3. main menu prompt [______]
-   - search for resto -> go to 4
-   - view my favorites -> go to 5
-   - exit
-4. prompt user for restaurant name [______]
-   - display restaurant profile
-     - search api for match
-     - create resto, insp, and viol instances + save
-     - construct profile
-   - prompt user to add favorite [ Y/N ]
-     - Y -> create fav and add to db
-     - N -> go to 3
-5. view favorites
-   - generate list of fav restaurants [______]
-     - delete (by name? or number)
-     - exit -> go to 3
+```
+> PROMPT for username
+	user = FINDORCREATE username
+
+> MENU
+	1. Search for Restaurant
+	2. View my Favorites List
+	3. Exit
+
+1. > PROMPT for restaurantname
+
+	FIND in db
+		yes
+		->
+
+		no
+		GETRESTAURANTVIOLATIONS (restaurantname)
+		QUERY api
+		CREATE restaurant
+		->
+
+		-> DISPLAY restaurant.profile
+		   > MENU
+			1. Add to favorites
+			2. Exit to main menu
+
+2. SELECT list from db
+	PUTS list
+	> MENU
+		1. Edit review of restaurant (restaurant)
+			A. Add
+			B. Edit
+			C. Delete
+		2. Exit to main menu
+```
 
 Helpful Links:
 [Collaborating with Git](https://github.com/learn-co-students/collaborating-with-git-crash-course)
