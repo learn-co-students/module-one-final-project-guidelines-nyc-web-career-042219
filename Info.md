@@ -6,10 +6,10 @@ Goals:
 2. Fix matching of restaurant input with api
    - make sure the correct restaurant is returned
    - verify array fields are being correctly queried
-   - [ ] Henry
+   - [x] Henry
 
 3. Constrain search scope to Manhattan
-   - [ ] Adam
+   - [x] Adam
 
 4. Create Restaurant instance and save to database
    - also create Inspection instance
