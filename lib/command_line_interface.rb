@@ -38,6 +38,8 @@ end
 
 def get_user_name_from_user
   puts "Please enter your name"
+  print ">"
+
   user_name = gets.chomp
   puts "Hello, #{user_name}!"
   user_name
@@ -51,19 +53,25 @@ def main_menu(user)
   puts "2. View My Favorites List"
   puts "3. Mystery Option ?????"
   puts "4. Exit the Program"
+  print ">"
+  
   option = get_input
   case option
   when "1"
+    # go to restaurant search
   when "2"
-      user.favorite_restaurants
+    user.favorite_restaurants
   when "3"
+    # mystery option
   else
+    exit
   end
 end
 
 def get_restaurant_input
   puts ""
   puts "Which restaurant would you like to check out?"
+  print ">"
   input = gets.chomp
   # if input = "exit" || "q" || "quit"
   #   exit
@@ -82,6 +90,7 @@ def restaurant_menu(user, restaurant)
   puts "2. View Favorites"
   puts "3. Exit to Main Menu"
   puts "Please enter a number"
+  print ">"
 
   option = get_input
   case option
@@ -111,10 +120,14 @@ def favorite_menu(fav)
   puts "1. Edit Rating"
   puts "2. Delete Favorite"
   puts "3. Exit to Main Menu"
+  print ">"
+
   option = get_input
   case option
   when "1"
     puts "Enter a new rating number"
+    print ">"
+
     new_rating = get_input
     fav.update_attribute(:my_rating, new_rating)
     puts ""
@@ -123,6 +136,8 @@ def favorite_menu(fav)
     # back to favorites list...
   when "2"
     puts "Are you sure? [ Y / N ]"
+    print ">"
+
     sure = get_input
     if sure.upcase == "Y"
       Favorite.delete(self.id)
@@ -140,6 +155,6 @@ def favorite_menu(fav)
 end
 
 def exit
-  puts "bye bye!!!"
+  puts "Bye bye!!!"
   exit!
 end

@@ -6,7 +6,7 @@ welcome
 user_name = get_user_name_from_user
 user = User.find_or_create_by(name: user_name)
 
-main_menu
+main_menu(user)
 
 restaurant_name = get_restaurant_input
 input = Restaurant.find_by(name: restaurant_name)
@@ -16,7 +16,7 @@ input = Restaurant.find_by(name: restaurant_name)
     restaurant = input
   end
 
-restaurant
+restaurant.profile
 
 restaurant_menu(user, restaurant)
 
