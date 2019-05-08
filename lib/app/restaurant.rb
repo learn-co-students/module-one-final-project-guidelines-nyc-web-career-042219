@@ -37,6 +37,7 @@ class Restaurant < ActiveRecord::Base
     worst_inspection.grade
     worst_inspection.score
     worst_inspection.violation.description
+    puts "Here's the dirt:"
     puts "Grade: #{worst_inspection.grade}"
     puts "Score: #{worst_inspection.score}"
     puts "Reason: #{worst_inspection.violation.description}"
