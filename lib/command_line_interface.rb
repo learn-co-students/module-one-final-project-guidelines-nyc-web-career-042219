@@ -51,11 +51,11 @@ end
 
 def get_restaurant_name
   puts "Which restaurant would you like to check out?"
-  restaurant_name = gets.chomp
-  if restaurant_name = "exit" || "q" || "quit"
-    exit
-  end
-  restaurant_name
+  input = gets.chomp
+  # if input = "exit" || "q" || "quit"
+  #   exit
+  # end
+  input
 end
 
 # def exit
