@@ -43,11 +43,22 @@ def get_user_name_from_user
   user_name
 end
 
-def main_menu
+def main_menu(user)
   puts "Welcome to the D.O.H.-jo"
   puts "************************"
   puts "Options:"
-
+  puts "1. Search the Restaurant Database!"
+  puts "2. View My Favorites List"
+  puts "3. Mystery Option ?????"
+  puts "4. Exit the Program"
+  option = get_input
+  case option
+  when "1"
+  when "2"
+      user.favorite_restaurants
+  when "3"
+  else
+  end
 end
 
 def get_restaurant_input
