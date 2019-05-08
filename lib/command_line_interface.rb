@@ -44,7 +44,7 @@ def get_user_name_from_user
   user_name
 end
 
-def get_restaurant_name
+def get_restaurant_input
   puts "Which restaurant would you like to check out?"
 
 
