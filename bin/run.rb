@@ -6,6 +6,8 @@ welcome
 user_name = get_user_name_from_user
 user = User.find_or_create_by(name: user_name)
 
+main_menu
+
 restaurant_name = get_restaurant_input
 input = Restaurant.find_by(name: restaurant_name)
   if input == nil

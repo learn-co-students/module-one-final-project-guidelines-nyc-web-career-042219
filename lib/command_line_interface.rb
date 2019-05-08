@@ -47,6 +47,7 @@ def main_menu
   puts "Welcome to the D.O.H.-jo"
   puts "************************"
   puts "Options:"
+
 end
 
 def get_restaurant_input
