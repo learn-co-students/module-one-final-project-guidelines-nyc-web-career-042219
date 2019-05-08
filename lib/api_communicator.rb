@@ -32,9 +32,12 @@ def populate_db_from_json(restaurant)
 
   inspection = Inspection.new
   inspection.grade = first_inspection[-4]
-  inspection.date = first_inspection[-3]
+  i_date = first_inspection[-3]
+  year = i_date[0..3]
+  month = i_date[5..6]
+  day = i_date[8..9]
+  inspection.date = "#{month}/" + "#{day}/" + "#{year}"
   score_as_integer = first_inspection[21].to_i
-  #return to datetime, parse datetime for profiles
   inspection.score = score_as_integer
   inspection.restaurant_id = restaurant.id
   inspection.violation_id = violation.id

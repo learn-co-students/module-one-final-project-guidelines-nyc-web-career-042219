@@ -10,11 +10,14 @@ main_menu(user)
 
 restaurant_name = get_restaurant_input
 input = Restaurant.find_by(name: restaurant_name)
+#restaurant not retrieving from db
   if input == nil
     restaurant = populate_db_from_json(restaurant_name)
   else
     restaurant = input
   end
+
+binding.pry
 
 restaurant.profile
 
