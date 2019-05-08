@@ -77,23 +77,30 @@ class Restaurant < ActiveRecord::Base
       return
     else
       puts "please select 1-8 please "
-      search_by_cuisine(user)
+      search_by_cuisine
     end
 
 
-
+    #gets data from API
     response = RestClient.get("https://developers.zomato.com/api/v2.1/search?entity_id=94741&entity_type=zone&cuisines=#{cuisine}", {'user-key': "#{ENV['API_KEY']}", accept: :json})
     string = response.body
     data = JSON.parse(string)
-    counter = 1
+
+    counter = 1#counter for listing the search results
     puts " "
     puts "Search Results:"
+    #prints out search result AND saves info into array of restaurant name, location and cuisine
     rest_data = data['restaurants'].map do |rest|
       location = rest['restaurant']['location']['city']
       name = rest['restaurant']['name']
       puts "#{counter}. #{name}, location: #{location}"
       counter += 1
       "#{name},#{location},#{cuisine}"
+    end
+    #if no search results were found, return to selecting a cuisine
+    if rest_data.length == 0
+      puts "No restaurants of that cuisine have been found in your area"
+      search_by_cuisine
     end
     rest_data
   end
@@ -104,6 +111,7 @@ class Restaurant < ActiveRecord::Base
     puts " "
     puts "Select Restaurant (1-20)"
     #selects requested cuisine
+
     rest_num = gets.chomp
     rest_num=rest_num.to_i #turns input into integer
     #splits the rest info as it is given by "search_by_cuisine" to name, location, cuisine
