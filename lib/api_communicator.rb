@@ -5,16 +5,19 @@ require 'pry'
 def get_restaurant_violations(restaurant)
 
   response_string = RestClient.get('https://data.cityofnewyork.us/api/views/43nn-pn8j/rows.json?accessType=DOWNLOAD')
-
-  # constrain search scope
-
   response_hash = JSON.parse(response_string)
-  # response_array = response_hash
 
-  restaurant_inspections = response_hash["data"]
   #array of all restaurant inspections
+  restaurant_inspections = response_hash["data"]
 
-  restaurant_inspections.each do |restaurant_inspection|
+  # constrains search scope
+  manhattan_inspections = restaurant_inspections.select do |r|
+    r[10] == "MANHATTAN"
+  end
+
+    binding.pry
+
+  manhattan_inspections.each do |restaurant_inspection|
     if restaurant_inspection[9] == restaurant
       restaurant_name = restaurant_inspection[9]
       restaurant_address = restaurant_inspection[11], restaurant_inspection[12]
