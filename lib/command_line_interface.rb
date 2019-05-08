@@ -46,14 +46,17 @@ end
 
 def get_restaurant_name
   puts "Which restaurant would you like to check out?"
+
+
   input = gets.chomp
   # if input = "exit" || "q" || "quit"
   #   exit
   # end
   input
+
 end
 
-# def exit
-#   puts "bye bye!!!"
-#   exit!
-# end
+def exit
+  puts "bye bye!!!"
+  exit!
+end
