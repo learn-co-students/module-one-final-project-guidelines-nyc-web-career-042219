@@ -17,23 +17,44 @@ class Compliment < ActiveRecord::Base
     response_hash["value"]
   end
   #does not work perfectly
-  def self.customize_chuck(name)
-    self.get_chuck.sub!("Chuck Norris", name)
-    # binding.pry
+  def self.customize_chuck(first_name, last_name)
+    new_chuck = self.get_chuck.split(" ")
+    done_chuck = new_chuck.map do |word|
+      if word == "Chuck" || word == "chuck" || word == "He" || word == "he"
+        word = first_name
+      elsif word == "His" || word == "his" || word == "Chucks'" || word == "chucks"
+        word = "#{first_name}'s"
+      elsif word == "He's" || word == "he's"
+        word = "#{first_name}'s'"
+      elsif word == "Norris"
+        word = last_name
+      elsif word == "Norris's" && last_name.last == 's'
+        word = "#{last_name}'"
+      elsif word == "Norris's" && last_name.last != 's'
+        word = "#{last_name}'s"
+      elsif word == "Norris'" && last_name.last == 's'
+        word = "#{last_name}'"
+      elsif word == "Norris'" && last_name.last != 's'
+        word = "#{last_name}'s"
+      else
+        word = word
+      end
+    end
+    done_chuck.join(" ")
   end
 
-  def self.get_leslie(name)
+  def self.get_leslie(first_name, last_name)
     adjective = LeslieAdjective.adjective
     animal = LeslieAnimal.animal
     ending = LeslieEnding.ending
-    "Oh #{name}, you #{adjective} #{animal}, #{ending}"
+    "Oh #{first_name} #{last_name}, you #{adjective} #{animal}, #{ending}"
   end
 
   def self.get_compliment(compliment_content)
-    find_or_create_by(compliment_content, 0)
+    find_or_create_by(compliment_content)
   end
 
 end
 
-# zach = Compliment.customize_chuck("Zach Vary")
-# binding.pry
+zach = Compliment.customize_chuck("Zach", "Vary")
+binding.pry

@@ -32,12 +32,14 @@ class CommandLineInterface
 
   def user_creation
 
-    puts "Please enter your name: "
-    user_name = gets.chomp
+    puts "Please enter your first name: "
+    user_first_name = gets.chomp
+    puts "Please enter your last name: "
+    user_last_name = gets.chomp
     puts "Please enter your phone number"
     user_phone_number = gets.chomp
 
-    @user = User.find_or_create_by(first_name: user_name, phone_number: user_phone_number)
+    @user = User.find_or_create_by(first_name: user_first_name, last_name: user_last_name, phone_number: user_phone_number)
 
     get_s_r_command
 
@@ -55,12 +57,14 @@ class CommandLineInterface
   def process_s_r_command
 
     if @command == 's'
-      puts "Please enter a name"
+      puts "Please enter a first name"
       first_name = gets.chomp
+      puts "Please enter a last name"
+      last_name = gets.chomp
       puts "Please enter a phone number"
       phone_number = gets.chomp
 
-      contact_creation(first_name, phone_number)
+      contact_creation(first_name, last_name, phone_number)
 
       puts "#{first_name} has been saved in your contacts!"
       get_c_l_command()
@@ -81,7 +85,10 @@ class CommandLineInterface
   end
 
   def get_c_l_command
-    puts "Enter '1' for a badass compliment, '2' for a quirky compliment, or '3' to go back."
+    puts "Enter '1' for a badass compliment"
+    puts "Enter '2' for a quirky compliment"
+    puts "Enter '3' to go back."
+
     c_l_command = gets.chomp
     if @command == 's'
       process_c_l_command_sending(c_l_command)
@@ -95,12 +102,12 @@ class CommandLineInterface
 
   def process_c_l_command_sending(command)
     if command == '1'
-      chuck = Compliment.customize_chuck(@contact_user.first_name)
+      chuck = Compliment.customize_chuck(@contact_user.first_name, @contact_user.last_name)
       compliment = Compliment.create(content:chuck)
       UserCompliment.create(user_id: @contact_user.id, compliment_id: compliment.id)
       Texting.send_message(@contact_user.phone_number, chuck)
     elsif command == '2'
-      leslie = Compliment.get_leslie(@contact_user.first_name)
+      leslie = Compliment.get_leslie(@contact_user.first_name, @contact_user.last_name)
       compliment = Compliment.create(content:leslie)
       UserCompliment.create(user_id: @contact_user.id, compliment_id: compliment.id)
       Texting.send_message(@contact_user.phone_number, leslie)
@@ -111,13 +118,13 @@ class CommandLineInterface
 
   def process_c_l_command_receiving(command)
     if command == '1'
-      chuck = Compliment.customize_chuck(@user.first_name)
+      chuck = Compliment.customize_chuck(@user.first_name, @user.last_name)
       compliment = Compliment.create(content:chuck)
       UserCompliment.create(user_id: @user.id, compliment_id: compliment.id)
       Texting.send_message(@user.phone_number, chuck)
       thank_you_options()
     elsif command == '2'
-      leslie = Compliment.get_leslie(@user.first_name)
+      leslie = Compliment.get_leslie(@user.first_name, @user_last_name)
       compliment = Compliment.create(content:leslie)
       UserCompliment.create(user_id: @user.id, compliment_id: compliment.id)
       Texting.send_message(@user.phone_number, leslie)
@@ -146,8 +153,8 @@ class CommandLineInterface
     end
   end
 
-  def contact_creation(name, phone_number)
-    @contact_user = User.find_or_create_by(first_name: name, phone_number: phone_number)
+  def contact_creation(first_name, last_name, phone_number)
+    @contact_user = User.find_or_create_by(first_name: first_name, last_name: last_name, phone_number: phone_number)
     UserContact.create(user_id: @user.id, contact_id: @contact_user.id)
   end
 
