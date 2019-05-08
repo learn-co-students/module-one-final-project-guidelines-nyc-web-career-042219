@@ -4,6 +4,11 @@ class User < ActiveRecord::Base
   has_many :user_compliments
   has_many :compliments, through: :user_compliments
 
+  # def self.full_name_split(name)
+  #   name_arr = name.split(" ")
+  #
+  # end
+
 
 
 end
