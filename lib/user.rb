@@ -13,16 +13,33 @@ class User < ActiveRecord::Base
     end
   end
 
+
   def check_into_rest
     #lists the restaurants by the chosen cuisine
     rest_id = Restaurant.get_rest_info
     name = Dish.get_dish_name #retrieves dish name from user
     category = Dish.get_dish_category #retrieves dish category from user
     dish= Dish.create(name: name, user_id: self.id, restaurant_id: rest_id, category: category)
+  end 
+
+  def dish_list(cat)
+    # self.dishes.select do |dish|
+
+    # Dish.all.select do |dish|
+    #   d_entree = dish[:category]['Entree']
+    #   puts "#{d_entree}"
+
+    # self.dishes.find_all do |dish|
+    #    dish[:category] == 'Entree'
+
+    self.dishes.each do |dish|
+      dish[:category]
+      if dish[:category] == cat
+        puts "#{dish[:name]} at #{Restaurant.find(dish.restaurant_id).name}"
+      end
+      end
+      end
 
     puts "Your new favorite dish of #{name} at #{Restaurant.find(rest_id).name} has been added"
-
-  end
-
 
 end

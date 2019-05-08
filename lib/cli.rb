@@ -46,8 +46,9 @@ input = gets.chomp
   when "1"
     Restaurant.find_rest_by_cuisine(user)
   when "2"
-    user.print_dishes
-    main_menu(user)
+    # user.print_dishes
+    dish_cat(user)
+    # main_menu(user) ##dish_cat should return us to main menu
   when "3"
     #binding.pry
     user.check_into_rest
@@ -60,3 +61,67 @@ input = gets.chomp
   end
 
 end
+<<<<<<< HEAD
+=======
+
+def dish_cat(user)
+  puts " "
+  puts "1. Cocktails"
+  puts "2. Appetizers"
+  puts "3. Entrees"
+  puts "4. Desserts"
+  puts "5. List all dishes"
+
+  input = gets.chomp
+
+    case input
+    when "1"
+      cat = 'cocktail'
+      user.dish_list(cat)
+    when "2"
+      cat = 'appetizer'
+      user.dish_list(cat)
+    when "3"
+      cat = 'Entree'
+      user.dish_list(cat)
+    when "4"
+      cat = 'Dessert'
+      user.dish_list(cat)
+    when "5"
+      user.print_dishes
+    # main_menu(user)
+    else
+      puts "please select 1, 2, 3, 4 or 5 "
+      main_menu(user)
+    end
+
+end
+
+def rest_search_menu
+  puts " "
+  puts "1. Search for a restaurant by location"
+  puts "2. Search for a restaurant by cuisine"
+  puts "3. Return to main menu"
+  puts "4. Exit"
+
+  input = gets.chomp
+
+    case input
+    when "1"
+      puts "selected 1"
+    when "2"
+      puts "Enter desired cuisine"
+      cuisine = gets.chomp
+      Restaurant.search_by_cuisine(cuisine)
+    when "3"
+      main_menu
+    when "4"
+      exit
+    else
+      puts "please select 1, 2, 3, or 4 "
+      main_menu
+    end
+
+
+end
+>>>>>>> first_branch_c
