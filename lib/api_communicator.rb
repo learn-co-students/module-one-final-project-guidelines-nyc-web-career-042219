@@ -35,7 +35,7 @@ def populate_db_from_json(restaurant)
   violation.description = first_inspection[19]
   violation.critical = first_inspection[20]
   violation.save
-  binding.pry
-  restaurant.profile
+
+  restaurant
 
 end

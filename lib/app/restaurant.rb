@@ -6,10 +6,10 @@ class Restaurant < ActiveRecord::Base
   has_many :violations, through: :inspections
 
 
-  def find_in_db
-
+  def self.find_in_db(restaurant_name)
+    self.where(self.name = restaurant_name)
   end
-  
+
   def latest_inspection
     self.inspections.first
   end
