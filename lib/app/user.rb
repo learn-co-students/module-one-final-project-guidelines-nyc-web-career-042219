@@ -4,14 +4,33 @@ class User < ActiveRecord::Base
   has_many :restaurants, through: :favorites
 
   def favorite_restaurants
+    puts ""
+    puts "Favorites"
+    puts "*********"
     self.favorites.each.with_index do |fav, i|
-      puts "#{i+1}. #{fav.restaurant.name}"
+      if favorites.length
+        puts "#{i+1}. #{fav.restaurant.name}"
+      else
+        puts "You don't have any favorites yet!"
+      end
     end
     puts ""
     puts "Enter a Number to Edit a Favorite"
-    puts "or Type \'Exit\' to Go to the Main Menu"
-    option = get_input.to_i - 1
-    favorite_menu(favorites[option])
+    puts "or Type \'exit\' to Go to the Main Menu"
+    print "> "
+
+    option = get_input
+    if option.downcase == "exit"
+      main_menu(self)
+    else
+      option_num = option.to_i - 1
+    end
+    if option_num < favorites.count
+      favorite_menu(favorites[option_num])
+    else
+      puts "Please enter a valid option"
+      main_menu(self)
+    end
   end
 
   def add_to_favorites(restaurant)

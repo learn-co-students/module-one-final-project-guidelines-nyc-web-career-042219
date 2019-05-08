@@ -37,10 +37,11 @@ def welcome
 end
 
 def get_user_name_from_user
-  puts "Please enter your name"
-  print ">"
+  puts "Please enter your name to begin:"
+  print "> "
 
   user_name = gets.chomp
+  puts ""
   puts "Hello, #{user_name}!"
   user_name
 end
@@ -48,13 +49,17 @@ end
 def main_menu(user)
   puts "Welcome to the D.O.H.-jo"
   puts "************************"
+  puts "      MAIN MENU"
+  puts "************************"
+  puts ""
   puts "Options:"
+  puts ""
   puts "1. Search the Restaurant Database!"
   puts "2. View My Favorites List"
   puts "3. Mystery Option ?????"
   puts "4. Exit the Program"
-  print ">"
-  
+  print "> "
+
   option = get_input
   case option
   when "1"
@@ -62,7 +67,7 @@ def main_menu(user)
   when "2"
     user.favorite_restaurants
   when "3"
-    # mystery option
+    exit # mystery!
   else
     exit
   end
@@ -71,11 +76,8 @@ end
 def get_restaurant_input
   puts ""
   puts "Which restaurant would you like to check out?"
-  print ">"
+  print "> "
   input = gets.chomp
-  # if input = "exit" || "q" || "quit"
-  #   exit
-  # end
   input
 end
 
@@ -90,7 +92,7 @@ def restaurant_menu(user, restaurant)
   puts "2. View Favorites"
   puts "3. Exit to Main Menu"
   puts "Please enter a number"
-  print ">"
+  print "> "
 
   option = get_input
   case option
@@ -105,52 +107,59 @@ def restaurant_menu(user, restaurant)
     puts ""
     puts "Exit to main menu"
     puts "*****************"
-    # exit to main menu...
+    main_menu(user)
   else
     "Please enter a number from the menu"
   end
 end
 
 def favorite_menu(fav)
-  #binding.pry
+  puts ""
   puts "Restaurant: #{fav.restaurant.name}"
+  puts "Cuisine: #{fav.restaurant.cuisine}"
+  # latest grade
   puts "My Rating: #{fav.my_rating}"
   puts ""
   puts "Options:"
   puts "1. Edit Rating"
   puts "2. Delete Favorite"
-  puts "3. Exit to Main Menu"
-  print ">"
+  puts "3. Back to Favorites Menu"
+  puts "4. Exit to Main Menu"
+  print "> "
 
   option = get_input
   case option
   when "1"
+    puts ""
     puts "Enter a new rating number"
-    print ">"
+    print "> "
 
     new_rating = get_input
     fav.update_attribute(:my_rating, new_rating)
     puts ""
     puts "Rating updated to #{fav.my_rating}"
     puts "*****************"
-    # back to favorites list...
+    fav.user.favorite_restaurants
   when "2"
+    puts ""
     puts "Are you sure? [ Y / N ]"
-    print ">"
+    print "> "
 
     sure = get_input
     if sure.upcase == "Y"
       Favorite.delete(self.id)
       puts "Favorite deleted"
       puts "****************"
-      # back to favorites list...
+      user.favorite_restaurants
     else
-      # back to single favorite menu...
+      favorite_menu(fav)
     end
   when "3"
-    # back to single favorite menu...
+    fav.user(favorite_restaurants)
+  when "4"
+    main_menu(fav.user)
   else
-    "Please enter a number from the menu"
+    puts "Please enter a number from the menu"
   end
 end
 
