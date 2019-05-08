@@ -124,11 +124,9 @@ class Restaurant < ActiveRecord::Base
     rest_num=rest_num.to_i #turns input into integer
     #splits the rest info as it is given by "search_by_cuisine" to name, location, cuisine
     rest_info =rest_data[rest_num - 1].split(",")
-    rest_name =  rest_info[0]
-    rest_location= rest_info[1]
-    rest_cuisine = rest_info[2]
+
     #At this point I have all data I need to create or find the restaurant in the table database
-    rest = Restaurant.find_or_create_by(name: rest_name, cuisine: rest_cuisine, location: rest_location)
+    rest = Restaurant.find_or_create_by(name: rest_info[0], cuisine: rest_info[2], location: rest_info[1])
     rest.id
   end
 

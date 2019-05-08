@@ -25,7 +25,7 @@ class User < ActiveRecord::Base
   end
 
   def dish_list(cat)
-
+    #lists dishes according to category (entree,dessert etc)
     self.dishes.reload.each do |dish|
       if dish[:category] == cat
         puts "#{dish[:name]} at #{Restaurant.find(dish.restaurant_id).name}"
@@ -34,6 +34,7 @@ class User < ActiveRecord::Base
   end
 
   def decide_where_to_eat
+    #randomly generates a restaurant at which to eat. Lists dishes you like there.
     rest = self.restaurants.uniq.sample
     puts "Go eat at #{rest.name}!"
     puts "Dishes you liked there are:"
