@@ -16,7 +16,7 @@ input = Restaurant.find_by(name: restaurant_name)
     restaurant = input
   end
 
-restaurant
+restaurant.profile
 
 restaurant_menu(user, restaurant)
 
