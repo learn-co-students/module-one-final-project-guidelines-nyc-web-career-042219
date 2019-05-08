@@ -34,22 +34,33 @@ end
 
 
 def main_menu(user)
+<<<<<<< HEAD
   puts "|+" * 60
   puts "1.".colorize(:blue)+ " Search for a restaurant by cuisine"
   puts "2.".colorize(:cyan)+" Look up your favorite dishes"
   puts "3.".colorize(:green)+" Check in to restaurant"
   puts "4. Exit".colorize(:red)
   puts "/" * 60
+=======
+  puts " "
+  puts "1. Search for a restaurant by cuisine"
+  puts "2. Look up your favorite dishes"
+  puts "3. Check into a restaurant and add a favorite dish"
+  puts "4. Exit"
+
+>>>>>>> master
 input = gets.chomp
 
   case input
   when "1"
-    Restaurant.search_by_cuisine(user)
+    Restaurant.find_rest_by_cuisine(user)
   when "2"
     # user.print_dishes
     dish_cat(user)
   when "3"
-    puts "selected 3"
+    #binding.pry
+    user.check_into_rest
+    main_menu(user)
   when "4"
     exit
   else
@@ -58,6 +69,8 @@ input = gets.chomp
   end
 
 end
+<<<<<<< HEAD
+=======
 
 def dish_cat(user)
   puts "=-" * 60
@@ -121,3 +134,4 @@ def rest_search_menu
 
 
 end
+>>>>>>> first_branch_c
