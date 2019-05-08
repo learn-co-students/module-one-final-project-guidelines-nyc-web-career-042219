@@ -1,6 +1,6 @@
 require 'rest-client'
 require 'pry'
-
+require 'colorize'
 class Restaurant < ActiveRecord::Base
 
    has_many :dishes
