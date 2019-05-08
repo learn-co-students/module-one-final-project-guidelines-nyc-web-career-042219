@@ -37,19 +37,21 @@ def main_menu(user)
   puts " "
   puts "1. Search for a restaurant by cuisine"
   puts "2. Look up your favorite dishes"
-  puts "3. Check into a restaurant"
+  puts "3. Check into a restaurant and add a favorite dish"
   puts "4. Exit"
 
 input = gets.chomp
 
   case input
   when "1"
-    Restaurant.search_by_cuisine(user)
+    Restaurant.find_rest_by_cuisine(user)
   when "2"
     user.print_dishes
     main_menu(user)
   when "3"
-    puts "selected 3"
+    #binding.pry
+    user.check_into_rest
+    main_menu(user)
   when "4"
     exit
   else

@@ -5,7 +5,7 @@ require_relative '../lib/dish.rb'
 require_relative '../lib/cli.rb'
 
 #binding.pry
-binding.pry
+
 welcome
 user = get_user
 
