@@ -14,11 +14,11 @@ def welcome
          8 8888       `8888888P'        `Y88888P'   8 8888     `88. ,8'         `         `8.`8888. 8 888888888888     8 8888
 
   foo
-  puts signature
+  puts signature.colorize(:blue)
 
+  puts "+" * 60
   puts " "
-  puts " "
-  puts "Welcome to Yourmet! What is your name?"
+  puts "Welcome to Yourmet! What is your name?".bold.on_yellow.colorize(:blue)
 end
 
 def get_user
@@ -34,12 +34,12 @@ end
 
 
 def main_menu(user)
-  puts " "
-  puts "1. Search for a restaurant by cuisine"
-  puts "2. Look up your favorite dishes"
-  puts "3. Check in to restaurant"
-  puts "4. Exit"
-
+  puts "|+" * 60
+  puts "1.".colorize(:blue)+ " Search for a restaurant by cuisine"
+  puts "2.".colorize(:cyan)+" Look up your favorite dishes"
+  puts "3.".colorize(:green)+" Check in to restaurant"
+  puts "4. Exit".colorize(:red)
+  puts "/" * 60
 input = gets.chomp
 
   case input
@@ -48,7 +48,6 @@ input = gets.chomp
   when "2"
     # user.print_dishes
     dish_cat(user)
-    # main_menu(user) ##dish_cat should return us to main menu
   when "3"
     puts "selected 3"
   when "4"
@@ -61,12 +60,13 @@ input = gets.chomp
 end
 
 def dish_cat(user)
-  puts " "
+  puts "=-" * 60
   puts "1. Cocktails"
   puts "2. Appetizers"
   puts "3. Entrees"
   puts "4. Desserts"
   puts "5. List all dishes"
+  puts "= " * 60
 
   input = gets.chomp
 
@@ -85,9 +85,9 @@ def dish_cat(user)
       user.dish_list(cat)
     when "5"
       user.print_dishes
-    # main_menu(user)
+    main_menu(user)
     else
-      puts "please select 1, 2, 3, 4 or 5 "
+      puts "please select 1, 2, 3, 4, or 5 "
       main_menu(user)
     end
 
@@ -98,7 +98,8 @@ def rest_search_menu
   puts "1. Search for a restaurant by location"
   puts "2. Search for a restaurant by cuisine"
   puts "3. Return to main menu"
-  puts "4. Exit"
+  puts "4. Exit".colorize(:red)
+  puts " "
 
   input = gets.chomp
 

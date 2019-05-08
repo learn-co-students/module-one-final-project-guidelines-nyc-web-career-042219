@@ -17,7 +17,7 @@ class Restaurant < ActiveRecord::Base
 
 
   def self.search_by_cuisine(user)
-    puts " "
+    puts ".*.".colorize(:yellow) * 20
     puts "Select desired cuisine"
     puts "1. Italian"
     puts "2. Asian"
@@ -25,7 +25,7 @@ class Restaurant < ActiveRecord::Base
     puts "4. Cafe"
     puts "5. Mediterranean"
     puts "6. Return to main menu"
-
+    puts " * ".colorize(:yellow) * 20
     input = gets.chomp
 
     case input
@@ -40,7 +40,7 @@ class Restaurant < ActiveRecord::Base
     when "5"
       cuisine = 70
     when "6"
-      main_menu
+      main_menu(user)
     else
       puts "please select 1, 2, 3, or 4 "
       main_menu(user)
@@ -53,14 +53,15 @@ class Restaurant < ActiveRecord::Base
     data = JSON.parse(string)
 
     puts " "
-    puts "Search Results:"
+    puts "Search Results:".bold.colorize(:green)
+    puts " "
     data['restaurants'].map do |rest|
       location = rest['restaurant']['location']['city']
       name = rest['restaurant']['name']
       puts "#{name}, location: #{location}"
 
-
     end
+    puts "* * " * 40
     main_menu(user)
   end
 
