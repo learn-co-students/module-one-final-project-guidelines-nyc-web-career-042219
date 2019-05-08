@@ -16,10 +16,9 @@ class Restaurant < ActiveRecord::Base
   end
 
 
-<<<<<<< HEAD
   def self.search_by_cuisine(user)
     puts ".*.".colorize(:yellow) * 20
-=======
+
 
   def self.find_rest_by_cuisine(user)
     Restaurant.search_by_cuisine
@@ -50,22 +49,18 @@ class Restaurant < ActiveRecord::Base
 
   def self.search_by_cuisine
     puts " "
->>>>>>> master
+
     puts "Select desired cuisine"
     puts "1. Italian"
     puts "2. Asian"
     puts "3. Indian"
     puts "4. Cafe"
     puts "5. Mediterranean"
-<<<<<<< HEAD
-    puts "6. Return to main menu"
-    puts " * ".colorize(:yellow) * 20
-=======
     puts "6. American"
     puts "7. Mexican"
     puts "8. Return to main menu"
+    puts " * ".colorize(:yellow) * 20
 
->>>>>>> master
     input = gets.chomp
 
     case input
@@ -80,15 +75,11 @@ class Restaurant < ActiveRecord::Base
     when "5"
       cuisine = 70
     when "6"
-<<<<<<< HEAD
-      main_menu(user)
-=======
       cuisine = 1
     when "7"
       cuisine = 136
     when "8"
       return
->>>>>>> master
     else
       puts "please select 1-8 please "
       search_by_cuisine(user)
@@ -101,19 +92,7 @@ class Restaurant < ActiveRecord::Base
     data = JSON.parse(string)
     counter = 1
     puts " "
-<<<<<<< HEAD
     puts "Search Results:".bold.colorize(:green)
-    puts " "
-    data['restaurants'].map do |rest|
-      location = rest['restaurant']['location']['city']
-      name = rest['restaurant']['name']
-      puts "#{name}, location: #{location}"
-
-    end
-    puts "* * " * 40
-    main_menu(user)
-=======
-    puts "Search Results:"
     rest_data = data['restaurants'].map do |rest|
       location = rest['restaurant']['location']['city']
       name = rest['restaurant']['name']
@@ -121,8 +100,9 @@ class Restaurant < ActiveRecord::Base
       counter += 1
       "#{name},#{location},#{cuisine}"
     end
+    puts "* * " * 40
     rest_data
->>>>>>> master
+
   end
 
 
@@ -135,7 +115,7 @@ class Restaurant < ActiveRecord::Base
     rest_num=rest_num.to_i #turns input into integer
     #splits the rest info as it is given by "search_by_cuisine" to name, location, cuisine
     rest_info =rest_data[rest_num - 1].split(",")
-    rest_name =  rest_info[0]
+    rest_name = rest_info[0]
     rest_location= rest_info[1]
     rest_cuisine = Restaurant.cuisine_by_num(rest_info[2])
     #At this point I have all data I need to create or find the restaurant in the table database
@@ -172,4 +152,5 @@ class Restaurant < ActiveRecord::Base
   # end
 
 
+end
 end
