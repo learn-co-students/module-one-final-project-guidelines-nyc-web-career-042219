@@ -4,18 +4,13 @@ require 'pry'
 
 def get_restaurant_violations(restaurant)
 
-  response_string = RestClient.get('https://data.cityofnewyork.us/api/views/43nn-pn8j/rows.json?accessType=DOWNLOAD')
+  response_string = RestClient.get('https://data.cityofnewyork.us/api/views/43nn-pn8j/rows.json?boro=MANHATTAN')
   response_hash = JSON.parse(response_string)
 
   #array of all restaurant inspections
   restaurant_inspections = response_hash["data"]
 
-  # constrains search scope
-  manhattan_inspections = restaurant_inspections.select do |r|
-    r[10] == "MANHATTAN"
-  end
-
-  manhattan_inspections.each do |restaurant_inspection|
+  restaurant_inspections.each do |restaurant_inspection|
     if restaurant_inspection[9]
       if restaurant_inspection[9] == restaurant.upcase
         restaurant_name = restaurant_inspection[9]
