@@ -9,6 +9,28 @@ class Dish < ActiveRecord::Base
     name
   end
 
+  def dish_update
+    puts "What would you like to update?"
+    puts "1. Dish name"
+    puts "2. Dish category"
+    change_type = gets.chomp
+    case change_type
+    when "1"
+      puts "What would you like to update the name to?"
+      name = gets.chomp
+      Dish.update(self.id, name: name)
+    when "2"
+      cat = Dish.get_dish_category
+      Dish.update(self.id, category: cat)
+    else
+      puts "Please select 1 or 2"
+      dish_update
+    end
+
+
+  end
+
+
 
   def self.get_dish_category #gets dish category from user
     puts "What category does the dish belong to?"
@@ -34,7 +56,29 @@ class Dish < ActiveRecord::Base
   end
 
   def self.update_or_delete_dish(user)
-    
+    dishes = user.print_dishes
+
+    puts "Which dish would you like to edit?"
+    dish_change = gets.chomp
+    puts "Would you like to:"
+    puts "1. Update the dish"
+    puts "2. Delete the dish"
+    puts "3. Return to main menu"
+    action = gets.chomp
+    dish_id_to_change = dishes[dish_change.to_i - 1]
+    dish_id_to_change = dish_id_to_change.to_i
+    dish_to_change = Dish.find(dish_id_to_change)
+  
+    case  action
+    when "1"
+      dish_to_change.dish_update
+    when "2"
+      Dish.delete(dish_id_to_change)
+    when "3"
+      main_menu(user)
+    else
+      puts "Please select 1,2, or 3"
+    end
   end
 
 
