@@ -33,5 +33,10 @@ class Dish < ActiveRecord::Base
     cat
   end
 
+  def self.update_or_delete_dish(user)
+    
+  end
+
+
 
 end

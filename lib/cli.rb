@@ -38,7 +38,8 @@ def main_menu(user)
   puts "1. Search for a restaurant by cuisine"
   puts "2. Look up your favorite dishes"
   puts "3. Check into a restaurant and add a favorite dish"
-  puts "4. Exit"
+  puts "4. Update or delete a favorite dish"
+  puts "5. Exit"
 
 input = gets.chomp
 
@@ -54,6 +55,9 @@ input = gets.chomp
     user.check_into_rest
     main_menu(user)
   when "4"
+    Dish.update_or_delete_dish(user)
+    main_menu(user)
+  when "5"
     exit
   else
     puts "please select 1, 2, 3, or 4 "
