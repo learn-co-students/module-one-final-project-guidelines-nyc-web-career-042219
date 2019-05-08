@@ -11,7 +11,26 @@ class User < ActiveRecord::Base
       puts "#{dish_name} at #{rest_name} (#{dish_cat})"
 
     end
-
-
   end
+
+  def dish_list(cat)
+    # self.dishes.select do |dish|
+
+    # Dish.all.select do |dish|
+    #   d_entree = dish[:category]['Entree']
+    #   puts "#{d_entree}"
+
+    # self.dishes.find_all do |dish|
+    #    dish[:category] == 'Entree'
+
+    self.dishes.each do |dish|
+      dish[:category]
+      if dish[:category] == cat
+        puts "#{dish[:name]} at #{Restaurant.find(dish.restaurant_id).name}"
+      end
+      end
+      end
+
+
+
 end

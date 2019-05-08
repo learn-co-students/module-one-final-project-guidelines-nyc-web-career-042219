@@ -37,7 +37,7 @@ def main_menu(user)
   puts " "
   puts "1. Search for a restaurant by cuisine"
   puts "2. Look up your favorite dishes"
-  puts "3. Check into a restaurant"
+  puts "3. Check in to restaurant"
   puts "4. Exit"
 
 input = gets.chomp
@@ -46,8 +46,9 @@ input = gets.chomp
   when "1"
     Restaurant.search_by_cuisine(user)
   when "2"
-    user.print_dishes
-    main_menu(user)
+    # user.print_dishes
+    dish_cat(user)
+    # main_menu(user) ##dish_cat should return us to main menu
   when "3"
     puts "selected 3"
   when "4"
@@ -59,7 +60,41 @@ input = gets.chomp
 
 end
 
+def dish_cat(user)
+  puts " "
+  puts "1. Cocktails"
+  puts "2. Appetizers"
+  puts "3. Entrees"
+  puts "4. Desserts"
+  puts "5. List all dishes"
+
+  input = gets.chomp
+
+    case input
+    when "1"
+      cat = 'cocktail'
+      user.dish_list(cat)
+    when "2"
+      cat = 'appetizer'
+      user.dish_list(cat)
+    when "3"
+      cat = 'Entree'
+      user.dish_list(cat)
+    when "4"
+      cat = 'Dessert'
+      user.dish_list(cat)
+    when "5"
+      user.print_dishes
+    # main_menu(user)
+    else
+      puts "please select 1, 2, 3, 4 or 5 "
+      main_menu(user)
+    end
+
+end
+
 def rest_search_menu
+  puts " "
   puts "1. Search for a restaurant by location"
   puts "2. Search for a restaurant by cuisine"
   puts "3. Return to main menu"
