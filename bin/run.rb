@@ -15,7 +15,10 @@ input = Restaurant.find_by(name: restaurant_name)
   else
     restaurant = input
   end
+
 restaurant
+
+
 
 
 

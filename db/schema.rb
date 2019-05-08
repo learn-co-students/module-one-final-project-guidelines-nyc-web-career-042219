@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 4) do
+ActiveRecord::Schema.define(version: 5) do
 
   create_table "favorites", force: :cascade do |t|
     t.integer "user_id"
@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 4) do
     t.integer "violation_id"
     t.string  "date"
     t.string  "grade"
+    t.integer "score"
   end
 
   create_table "restaurants", force: :cascade do |t|
