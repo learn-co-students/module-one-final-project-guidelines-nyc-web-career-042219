@@ -40,7 +40,9 @@ def populate_db_from_json(restaurant)
   inspection.violation_id = violation.id
   inspection.save
 
-binding.pry
+
+
+
   restaurant
 
 end
