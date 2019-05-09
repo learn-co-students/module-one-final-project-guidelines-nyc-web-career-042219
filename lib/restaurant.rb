@@ -18,7 +18,7 @@ class Restaurant < ActiveRecord::Base
 
 
   def self.find_rest_by_cuisine(user)
-    Restaurant.search_by_cuisine
+    Restaurant.search_by_cuisine(user)
     main_menu(user)
   end
 
@@ -44,7 +44,7 @@ class Restaurant < ActiveRecord::Base
     cuisine
   end
 
-  def self.search_by_cuisine
+  def self.search_by_cuisine(user)
     puts " "
     puts "Select desired cuisine"
     puts "1. Italian"
@@ -61,27 +61,34 @@ class Restaurant < ActiveRecord::Base
     case input
     when "1"
       cuisine = 55
+      cuisine_name = "Italian"
     when "2"
       cuisine = 3
+      cuisine_name = "Asian"
     when "3"
       cuisine = 7
+      cuisine_name = "Indian"
     when "4"
       cuisine = 30
+      cuisine_name = "Cafe"
     when "5"
       cuisine = 70
+      cuisine_name = "Mediterranean"
     when "6"
       cuisine = 1
+      cuisine_name = "American"
     when "7"
       cuisine = 136
+      cuisine_name = "Mexican"
     when "8"
-      return
+      main_menu(user)
     else
       puts "please select 1-8 please "
-      search_by_cuisine
+      self.search_by_cuisine(user)
     end
 
 
-    #gets data from API
+    #gets data from API according to cuisine
     response = RestClient.get("https://developers.zomato.com/api/v2.1/search?entity_id=94741&entity_type=zone&cuisines=#{cuisine}", {'user-key': "#{ENV['API_KEY']}", accept: :json})
     string = response.body
     data = JSON.parse(string)
@@ -95,19 +102,20 @@ class Restaurant < ActiveRecord::Base
       name = rest['restaurant']['name']
       puts "#{counter}. #{name}, location: #{location}"
       counter += 1
-      "#{name},#{location},#{cuisine}"
+      "#{name},#{location},#{cuisine_name}"
     end
     #if no search results were found, return to selecting a cuisine
     if rest_data.length == 0
       puts "No restaurants of that cuisine have been found in your area"
-      search_by_cuisine
+      self.search_by_cuisine(user)
     end
     rest_data
+
   end
 
 
-  def self.get_rest_info
-    rest_data= Restaurant.search_by_cuisine
+  def self.get_rest_info(user)
+    rest_data= Restaurant.search_by_cuisine(user)
     puts " "
     puts "Select Restaurant (1-20)"
     #selects requested cuisine
@@ -116,41 +124,11 @@ class Restaurant < ActiveRecord::Base
     rest_num=rest_num.to_i #turns input into integer
     #splits the rest info as it is given by "search_by_cuisine" to name, location, cuisine
     rest_info =rest_data[rest_num - 1].split(",")
-    rest_name =  rest_info[0]
-    rest_location= rest_info[1]
-    rest_cuisine = Restaurant.cuisine_by_num(rest_info[2])
+
     #At this point I have all data I need to create or find the restaurant in the table database
-    rest = Restaurant.find_or_create_by(name: rest_name, cuisine: rest_cuisine, location: rest_location)
+    rest = Restaurant.find_or_create_by(name: rest_info[0], cuisine: rest_info[2], location: rest_info[1])
     rest.id
   end
-  # def self.rest_search_menu(user)
-  #   puts " "
-  #   puts "How would you like to search for a restaurant?"
-  #   puts "1. Search for a restaurant by location"
-  #   puts "2. Search for a restaurant by cuisine"
-  #   puts "3. Return to main menu"
-  #   puts "4. Exit"
-  #
-  #   input = gets.chomp
-  #
-  #     case input
-  #     when "1"
-  #       puts "selected 1"
-  #     when "2"
-  #
-  #       Restaurant.search_by_cuisine(user)
-  #       main_menu(user)
-  #     when "3"
-  #       main_menu(user)
-  #     when "4"
-  #       exit
-  #     else
-  #       puts "please select 1, 2, 3, or 4 "
-  #       main_menu(user)
-  #     end
-  #
-  #
-  # end
 
 
 end
