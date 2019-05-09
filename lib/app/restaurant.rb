@@ -23,7 +23,7 @@ class Restaurant < ActiveRecord::Base
     puts "Grade: #{self.latest_inspection.grade} - Inspection Date: #{self.latest_inspection.date}"
     puts "************************"
   end
-  
+
   def inspection_history
     self.inspections.order(date: :desc).each.with_index do |inspection, i|
       puts "#{i+1}. Grade: #{inspection.grade} - Inspection Date: #{inspection.date}"
@@ -33,9 +33,9 @@ class Restaurant < ActiveRecord::Base
   def worst_violation
     worst_inspection = self.inspections.order(score: :desc).first
       if worst_inspection.score > 12
-        puts "Here's the dirt:"
+        puts "HERE'S THE DIRT:"
       else
-        puts "Here's the scoop:"
+        puts "HERE'S THE SCOOP:"
       end
     puts ""
     puts "Grade: #{worst_inspection.grade}"
