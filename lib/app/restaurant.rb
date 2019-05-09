@@ -10,17 +10,16 @@ class Restaurant < ActiveRecord::Base
   end
 
   def profile
-    puts ""
+    puts "************************"
+    puts "      PROFILE"
+    puts "************************"
     puts ""
     puts "#{self.name}"
-    puts ""
     puts "#{self.address}, #{self.zipcode}"
     puts ""
-    puts "*" * 20
-    puts ""
+    puts "************************"
     puts "Grade: #{self.latest_inspection.grade} - Inspection Date: #{self.latest_inspection.date}"
-    puts ""
-    puts "*" * 20
+    puts "************************"
   end
 
   def inspection_history
@@ -31,12 +30,18 @@ class Restaurant < ActiveRecord::Base
 
   def worst_violation
     worst_inspection = self.inspections.order(score: :desc).first
-    worst_inspection.grade
-    worst_inspection.score
-    worst_inspection.violation.description
+      if worst_inspection.score > 12
+        puts "HERE'S THE DIRT:"
+      else
+        puts "HERE'S THE SCOOP:"
+      end
+    puts ""
     puts "Grade: #{worst_inspection.grade}"
+    puts ""
     puts "Score: #{worst_inspection.score}"
+    puts ""
     puts "Reason: #{worst_inspection.violation.description}"
+
   end
 
 end

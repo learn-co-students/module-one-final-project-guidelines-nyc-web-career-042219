@@ -4,5 +4,5 @@ class Violation < ActiveRecord::Base
   has_many :restaurants, through: :inspections
 
 
-
+  
 end

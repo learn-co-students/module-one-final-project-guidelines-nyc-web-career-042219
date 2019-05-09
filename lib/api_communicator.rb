@@ -3,19 +3,25 @@ require 'json'
 require 'pry'
 
 def populate_db_from_json(restaurant)
-  #get_restaurant_violations_from_JSON
 
-  response_string = RestClient.get("https://data.cityofnewyork.us/api/views/43nn-pn8j/rows.json?boro=MANHATTAN")
+  response_string = RestClient.get("https://data.cityofnewyork.us/resource/43nn-pn8j.json?dba=#{restaurant.upcase}")
   response_hash = JSON.parse(response_string)
+  restaurant_inspections = response_hash
 
-  #array of all restaurant inspections
-  restaurant_inspections = response_hash["data"]
 
-  selected_inspections = restaurant_inspections.select do |r|
-    r[9] == restaurant.upcase
-  end
 
-  first_inspection = selected_inspections.first
+  # selected_inspections = restaurant_inspections.select do |r|
+  #   r[9] == restaurant.upcase
+  # end
+  #
+  # first_inspection = selected_inspections
+  #
+  # first_inspection.each do |inspection|
+  #   r[9] == restaurant.upcase
+  #   if restaurant.exists?
+
+
+
 
   restaurant = Restaurant.new
   restaurant.name = first_inspection[9]
@@ -23,6 +29,7 @@ def populate_db_from_json(restaurant)
   restaurant.zipcode = first_inspection[13]
   restaurant.cuisine = first_inspection[15]
   restaurant.save
+
 
   violation = Violation.new
   violation.code = first_inspection[18]
@@ -32,16 +39,16 @@ def populate_db_from_json(restaurant)
 
   inspection = Inspection.new
   inspection.grade = first_inspection[-4]
-  inspection.date = first_inspection[-3]
+  inspect_date = first_inspection[-3]
+  year = inspect_date[0..3]
+  month = inspect_date[5..6]
+  day = inspect_date[8..9]
+  inspection.date = "#{month}/" + "#{day}/" + "#{year}"
   score_as_integer = first_inspection[21].to_i
-  #return to datetime, parse datetime for profiles
   inspection.score = score_as_integer
   inspection.restaurant_id = restaurant.id
   inspection.violation_id = violation.id
   inspection.save
 
-
-
   restaurant
-
-end
+  end
