@@ -47,6 +47,7 @@ class User < ActiveRecord::Base
       Favorite.create({user_id: self.id, restaurant_id: restaurant.id})
       puts "Added to favorites"
       puts "******************"
+      main_menu(user)
     end
   end
 
