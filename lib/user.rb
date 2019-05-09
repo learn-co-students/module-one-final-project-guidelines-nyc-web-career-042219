@@ -4,12 +4,9 @@ class User < ActiveRecord::Base
 
   def print_dishes
     counter = 1
+    #prints out all the users dishes. saves all the users dish IDs in an array
     dishes = self.dishes.reload.map do |dish|
-      dish_name = dish[:name]
-      rest_name = dish.restaurant[:name]
-      dish_cat = dish[:category]
-
-      puts "#{counter}.".colorize(:blue)+" #{dish_name}".colorize(:green)+" at "+"#{rest_name}".colorize(:yellow)+" (#{dish_cat})"
+      puts "#{counter}. #{dish[:name]} at #{dish.restaurant[:name]} (#{dish[:category]})"
       counter += 1
       "#{dish.id}"
     end
@@ -19,7 +16,7 @@ class User < ActiveRecord::Base
 
   def check_into_rest
     #lists the restaurants by the chosen cuisine
-    rest_id = Restaurant.get_rest_info
+    rest_id = Restaurant.get_rest_info(self)
     name = Dish.get_dish_name #retrieves dish name from user
     category = Dish.get_dish_category #retrieves dish category from user
     dish= Dish.create(name: name, user_id: self.id, restaurant_id: rest_id, category: category)
@@ -29,7 +26,6 @@ class User < ActiveRecord::Base
   def dish_list(cat)
     counter = 1
     self.dishes.reload.each do |dish|
-      dish[:category]
       if dish[:category] == cat
         puts "#{counter}.".colorize(:blue)+" #{dish[:name]}".colorize(:green)+" at "+"#{Restaurant.find(dish.restaurant_id).name}".colorize(:light_yellow)
         counter += 1
@@ -38,6 +34,7 @@ class User < ActiveRecord::Base
   end
 
   def decide_where_to_eat
+    #randomly generates a restaurant at which to eat. Lists dishes you like there.
     rest = self.restaurants.uniq.sample
     puts " "
     puts "Go eat at #{rest.name}!".blink.colorize(:light_yellow)
