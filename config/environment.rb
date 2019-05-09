@@ -1,5 +1,6 @@
 require 'bundler'
 require 'dotenv/load'
+require 'colorize'
 Bundler.require
 
 ActiveRecord::Base.establish_connection(adapter: 'sqlite3', database: 'db/development.db')

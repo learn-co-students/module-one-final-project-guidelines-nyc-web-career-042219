@@ -8,3 +8,4 @@ gem "require_all"
 gem 'rest-client'
 gem "dotenv"
 gem "rake"
+gem "colorize"

@@ -3,10 +3,9 @@ require_relative '../lib/restaurant.rb'
 require_relative '../lib/user.rb'
 require_relative '../lib/dish.rb'
 require_relative '../lib/cli.rb'
-
-
+require 'colorize'
 #binding.pry
-
+# puts String.color_samples
 welcome
 user = get_user
 

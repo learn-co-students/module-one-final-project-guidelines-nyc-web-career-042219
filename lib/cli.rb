@@ -1,7 +1,8 @@
 def welcome
+    puts "=-".colorize(:light_black) * 65
 
   signature = <<-foo
-  .         .
+  .       .        .                 .    .       . .         .               .         .           .          .       .          .
   `8.`8888.      ,8'  ,o888888o.     8 8888      88 8 888888888o.            ,8.       ,8.          8 8888888888 8888888 8888888888
    `8.`8888.    ,8'. 8888     `88.   8 8888      88 8 8888    `88.          ,888.     ,888.         8 8888             8 8888
     `8.`8888.  ,8',8 8888       `8b  8 8888      88 8 8888     `88         .`8888.   .`8888.        8 8888             8 8888
@@ -14,11 +15,10 @@ def welcome
          8 8888       `8888888P'        `Y88888P'   8 8888     `88. ,8'         `         `8.`8888. 8 888888888888     8 8888
 
   foo
-  puts signature
-
+  puts signature.colorize(:light_cyan)
+  puts "=-".colorize(:light_black) * 65
   puts " "
-  puts " "
-  puts "Welcome to Yourmet! What is your name?"
+  puts "Welcome to Yourmet! What is your name?".bold.colorize(:blue)
 end
 
 def get_user
@@ -35,14 +35,16 @@ end
 
 def main_menu(user)
   puts " "
-  puts "1. Search for a restaurant by cuisine"
-  puts "2. Look up your favorite dishes"
-  puts "3. Check into a restaurant and add a favorite dish"
-  puts "4. Update or delete a favorite dish"
-  puts "5. Decide where to eat by randomly choosing a restaurant from your favorites!"
-  puts "6. Exit"
+  puts "|+".colorize(:cyan) * 66
+  puts "1. ".colorize(:magenta)+"Search for a restaurant by cuisine"
+  puts "2. ".colorize(:blue)+"Look up your favorite dishes"
+  puts "3. ".colorize(:cyan)+"Check into a restaurant and add a favorite dish"
+  puts "4. ".colorize(:green)+"Update or delete a favorite dish"
+  puts "5. ".colorize(:yellow)+"Decide where to eat by randomly choosing a restaurant from your favorites!"
+  puts "6. Exit".colorize(:red)
+  # puts " ".colorize(:cyan) * 60
 
-input = gets.chomp
+  input = gets.chomp
 
   case input
   when "1"
@@ -64,7 +66,7 @@ input = gets.chomp
   when "6"
     exit
   else
-    puts "please select 1, 2, 3, 4, 5, or 6 "
+    puts "please select 1, 2, 3, 4, 5, or 6".bold
     main_menu(user)
   end
 
@@ -72,12 +74,14 @@ end
 
 
 def dish_cat(user)
+  puts "=-".colorize(:light_black) * 65
+  puts "1.".colorize(:light_blue)+" Cocktails"
+  puts "2.".colorize(:magenta)+" Appetizers"
+  puts "3.".colorize(:blue)+" Entrees"
+  puts "4.".colorize(:green)+" Desserts"
+  puts "5.".colorize(:yellow)+" List all dishes"
+  puts "=-".colorize(:light_black) * 65
   puts " "
-  puts "1. Cocktails"
-  puts "2. Appetizers"
-  puts "3. Entrees"
-  puts "4. Desserts"
-  puts "5. List all dishes"
 
   input = gets.chomp
 
@@ -96,9 +100,9 @@ def dish_cat(user)
       user.dish_list(cat)
     when "5"
       user.print_dishes
-    # main_menu(user)
+      main_menu(user)
     else
-      puts "please select 1, 2, 3, 4 or 5 "
+      puts "please select 1, 2, 3, 4, or 5 "
       main_menu(user)
     end
 
@@ -110,6 +114,7 @@ def rest_search_menu
   puts "2. Search for a restaurant by cuisine"
   puts "3. Return to main menu"
   puts "4. Exit"
+  puts " "
 
   input = gets.chomp
 
@@ -125,7 +130,7 @@ def rest_search_menu
     when "4"
       exit
     else
-      puts "please select 1, 2, 3, or 4 "
+      puts "please select 1, 2, 3, or 4".bold
       main_menu
     end
 
