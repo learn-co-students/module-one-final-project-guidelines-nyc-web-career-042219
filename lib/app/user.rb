@@ -7,23 +7,30 @@ class User < ActiveRecord::Base
     puts ""
     puts "Favorites"
     puts "*********"
-    self.favorites.each.with_index do |fav, i|
-      if favorites.length
+    # binding.pry
+
+    if favorites.length > 0
+      self.favorites.each.with_index do |fav, i|
         puts "#{i+1}. #{fav.restaurant.name}"
-      else
-        puts "You don't have any favorites yet!"
       end
+      puts ""
+      puts "Enter a Number to Edit a Favorite"
+      puts "or Type \'exit\' to Go to the Main Menu"
+      print "> "
+    else
+      puts "You don't have any favorites yet!"
+      puts "Press any key to return"
+      returner = get_input
+      main_menu(self) if returner
     end
-    puts ""
-    puts "Enter a Number to Edit a Favorite"
-    puts "or Type \'exit\' to Go to the Main Menu"
-    print "> "
 
     option = get_input
     if option.downcase == "exit"
       main_menu(self)
-    else
+    elsif option
       option_num = option.to_i - 1
+    else
+      puts "Please enter a valid option"
     end
     if option_num < favorites.count
       favorite_menu(favorites[option_num])

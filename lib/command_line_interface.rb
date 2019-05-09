@@ -47,6 +47,7 @@ def get_user_name_from_user
 end
 
 def main_menu(user)
+  puts ""
   puts "Welcome to the D.O.H.-jo"
   puts "************************"
   puts "      MAIN MENU"
@@ -68,8 +69,10 @@ def main_menu(user)
     user.favorite_restaurants
   when "3"
     exit # mystery!
-  else
+  when "4"
     exit
+  else
+    main_menu(user)
   end
 end
 
@@ -150,7 +153,7 @@ def favorite_menu(fav)
       Favorite.delete(self.id)
       puts "Favorite deleted"
       puts "****************"
-      user.favorite_restaurants
+      fav.user.favorite_restaurants
     else
       favorite_menu(fav)
     end
