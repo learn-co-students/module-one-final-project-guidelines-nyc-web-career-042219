@@ -6,9 +6,9 @@ class User < ActiveRecord::Base
     counter = 1
     #prints out all the users dishes. saves all the users dish IDs in an array
     dishes = self.dishes.reload.map do |dish|
-      puts "#{counter}. #{dish[:name]} at #{dish.restaurant[:name]} (#{dish[:category]})"
+      puts "#{counter}.".colorize(:blue)+" #{dish[:name]} ".colorize(:light_green)+"at "+"#{dish.restaurant[:name]}".colorize(:light_yellow)+" (#{dish[:category]})"
       counter += 1
-      "#{dish.id}"
+      dish.id
     end
     dishes
   end

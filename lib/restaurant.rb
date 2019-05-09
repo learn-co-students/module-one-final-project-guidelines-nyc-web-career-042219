@@ -19,31 +19,8 @@ class Restaurant < ActiveRecord::Base
     Restaurant.search_by_cuisine(user)
     main_menu(user)
   end
-
-  def self.cuisine_by_num(input) #returns the cuisine string after recieving cuisine ID
-    case input
-    when "55"
-      cuisine = "Italian"
-    when "3"
-      cuisine = "Asian"
-    when "7"
-      cuisine = "Indain"
-    when "30"
-      cuisine = "Cafe"
-    when "70"
-      cuisine = "Mediterranean"
-    when "1"
-      cuisine = "American"
-    when "136"
-      cuisine = "Mexican"
-    else
-      cuisine = "Other"
-    end
-      cuisine
-  end
-
-<<<<<<< HEAD
-  def self.search_by_cuisine
+  
+  def self.search_by_cuisine(user)
 
     puts ".*.".colorize(:light_black) * 44
     puts "Select desired cuisine".bold.colorize(:blue)
@@ -56,19 +33,7 @@ class Restaurant < ActiveRecord::Base
     puts "7. ".colorize(:yellow)+"Mexican"
     puts "8. ".colorize(:light_yellow)+"Return to main menu"
     puts ".*.".colorize(:light_black) * 44
-=======
-  def self.search_by_cuisine(user)
-    puts " "
-    puts "Select desired cuisine"
-    puts "1. Italian"
-    puts "2. Asian"
-    puts "3. Indian"
-    puts "4. Cafe"
-    puts "5. Mediterranean"
-    puts "6. American"
-    puts "7. Mexican"
-    puts "8. Return to main menu"
->>>>>>> master
+
 
     input = gets.chomp
 
