@@ -23,21 +23,7 @@ class Restaurant < ActiveRecord::Base
     puts "Grade: #{self.latest_inspection.grade} - Inspection Date: #{self.latest_inspection.date}"
     puts "************************"
   end
-
-  # puts "Welcome to the D.O.H.-jo"
-  # puts "************************"
-  # puts "      MAIN MENU"
-  # puts "************************"
-  # puts ""
-  # puts "Options:"
-  # puts ""
-  # puts "1. Search the Restaurant Database!"
-  # puts "2. View My Favorites List"
-  # puts "3. Mystery Option ?????"
-  # puts "4. Exit the Program"
-  # print "> "
-
-
+  
   def inspection_history
     self.inspections.order(date: :desc).each.with_index do |inspection, i|
       puts "#{i+1}. Grade: #{inspection.grade} - Inspection Date: #{inspection.date}"
