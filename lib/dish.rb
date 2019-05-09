@@ -70,7 +70,6 @@ class Dish < ActiveRecord::Base
     action = gets.chomp
     #gets dish ID from dishes array, changes it to an int. gets dish object.
     dish_id_to_change = dishes[dish_change.to_i - 1]
-    dish_id_to_change = dish_id_to_change.to_i
     dish_to_change = Dish.find(dish_id_to_change)
 
 
@@ -85,7 +84,7 @@ class Dish < ActiveRecord::Base
       main_menu(user)
     else
       puts "Please select 1,2, or 3"
-      Dish.update_or_delete_dish
+      Dish.update_or_delete_dish(user)
     end
   end
 

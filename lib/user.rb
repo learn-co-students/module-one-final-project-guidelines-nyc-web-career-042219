@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
     dishes = self.dishes.reload.map do |dish|
       puts "#{counter}. #{dish[:name]} at #{dish.restaurant[:name]} (#{dish[:category]})"
       counter += 1
-      "#{dish.id}"
+      dish.id
     end
     dishes
   end
