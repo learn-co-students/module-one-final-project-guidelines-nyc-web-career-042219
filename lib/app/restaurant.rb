@@ -21,7 +21,6 @@ class Restaurant < ActiveRecord::Base
     puts "Grade: #{self.latest_inspection.grade} - Inspection Date: #{self.latest_inspection.date}"
     puts ""
     puts "*" * 20
-    puts ""
   end
 
   def inspection_history

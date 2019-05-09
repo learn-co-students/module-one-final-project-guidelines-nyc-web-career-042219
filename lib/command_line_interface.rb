@@ -68,7 +68,40 @@ def main_menu(user)
   option = get_input
   case option
   when "1"
-    # go to restaurant search
+    res = restaurant_prompt
+    restaurant = Restaurant.find_by(name: res)
+    if restaurant == nil
+      restaurant = populate_db_from_json(res)
+    end
+    restaurant.profile
+    restaurant
+
+    # ||||| somehow this is accidentally getting called
+    # ||||| when searching for restaurant "mayfield"
+    # vvvvv and then hits an error on line 34
+
+#     Traceback (most recent call last):
+#             6: from bin/run.rb:8:in `<main>'
+#     5: from /Users/adamsultanov/Development/mod-1/assignments/module-one-final-project-guide
+# lines-nyc-web-career-042219/lib/command_line_interface.rb:79:in `main_menu'
+#         4: from /Users/adamsultanov/Development/mod-1/assignments/module-one-final-project-guide
+# lines-nyc-web-career-042219/lib/app/user.rb:35:in `favorite_restaurants'
+#         3: from /Users/adamsultanov/Development/mod-1/assignments/module-one-final-project-guide
+# lines-nyc-web-career-042219/lib/command_line_interface.rb:157:in `favorite_menu'
+#         2: from /Users/adamsultanov/Development/mod-1/assignments/module-one-final-project-guide
+# lines-nyc-web-career-042219/lib/app/user.rb:35:in `favorite_restaurants'
+#         1: from /Users/adamsultanov/Development/mod-1/assignments/module-one-final-project-guide
+# lines-nyc-web-career-042219/lib/command_line_interface.rb:173:in `favorite_menu'
+# /Users/adamsultanov/Development/mod-1/assignments/module-one-final-project-guidelines-nyc-web-ca
+# reer-042219/lib/app/user.rb:34:in `favorite_restaurants': undefined method `<' for nil:NilClass
+# (NoMethodError)
+
+    # i think its because there is no error handling for
+    # if the restaurant is both 1.not in our database
+    # and 3.not in the DOH api
+
+    # im tired...
+
   when "2"
     user.favorite_restaurants
   when "3"

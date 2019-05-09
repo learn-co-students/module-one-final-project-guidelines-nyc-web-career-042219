@@ -7,7 +7,6 @@ class User < ActiveRecord::Base
     puts ""
     puts "Favorites"
     puts "*********"
-    # binding.pry
 
     if favorites.length > 0
       self.favorites.each.with_index do |fav, i|
@@ -24,7 +23,7 @@ class User < ActiveRecord::Base
       main_menu(self) if returner
     end
 
-    option = get_input
+    option = gets.chomp
     if option.downcase == "exit"
       main_menu(self)
     elsif option
@@ -41,11 +40,11 @@ class User < ActiveRecord::Base
   end
 
   def add_to_favorites(restaurant)
-    fav = Favorite.new({user_id: self.id, restaurant_id: restaurant.id})
-    if Favorite.exists?
+    if Favorite.exists?({user_id: self.id, restaurant_id: restaurant.id})
       puts "You have already added this restaurant as a favorite"
+      return "\"meep\""
     else
-      fav.save
+      Favorite.create({user_id: self.id, restaurant_id: restaurant.id})
       puts "Added to favorites"
       puts "******************"
     end
