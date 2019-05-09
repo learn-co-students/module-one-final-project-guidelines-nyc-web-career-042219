@@ -32,19 +32,27 @@ def welcome
   "
 end
 
-def get_user_name_from_user
+def get_input
+  input = gets.chomp
+end
+
+def user_name_prompt
   puts "Please enter your name to begin:"
   print "> "
 
-  user_name = gets.chomp
+  user_name = get_input
+  if user_name == ""
+    user_name_prompt
+  end
   puts ""
   puts "Hello, #{user_name}!"
   user_name
 end
 
+
 def main_menu(user)
   puts ""
-  puts "Welcome to the D.O.H.-jo"
+  puts "Welcome to the D.O.H.-Jo"
   puts "************************"
   puts "      MAIN MENU"
   puts "************************"
@@ -74,16 +82,16 @@ def main_menu(user)
   end
 end
 
-def get_restaurant_input
+def restaurant_prompt
   puts ""
   puts "Which restaurant would you like to check out?"
   print "> "
-  input = gets.chomp
-  input
-end
 
-def get_input
-  input = gets.chomp
+  restaurant = get_input
+  if restaurant == ""
+    restaurant_prompt
+  end
+  restaurant
 end
 
 def restaurant_menu(user, restaurant)
