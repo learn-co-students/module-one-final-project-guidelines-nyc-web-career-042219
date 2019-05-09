@@ -15,11 +15,6 @@ class Restaurant < ActiveRecord::Base
     data
   end
 
-
-  def self.search_by_cuisine(user)
-    puts ".*.".colorize(:yellow) * 20
-
-
   def self.find_rest_by_cuisine(user)
     Restaurant.search_by_cuisine
     main_menu(user)
@@ -44,22 +39,22 @@ class Restaurant < ActiveRecord::Base
     else
       cuisine = "Other"
     end
-    cuisine
+      cuisine
   end
 
   def self.search_by_cuisine
-    puts " "
 
-    puts "Select desired cuisine"
-    puts "1. Italian"
-    puts "2. Asian"
-    puts "3. Indian"
-    puts "4. Cafe"
-    puts "5. Mediterranean"
-    puts "6. American"
-    puts "7. Mexican"
-    puts "8. Return to main menu"
-    puts " * ".colorize(:yellow) * 20
+    puts ".*.".colorize(:light_black) * 44
+    puts "Select desired cuisine".bold.colorize(:blue)
+    puts "1. ".colorize(:light_blue)+"Italian"
+    puts "2. ".colorize(:magenta)+"Asian"
+    puts "3. ".colorize(:blue)+"Indian"
+    puts "4. ".colorize(:cyan)+"Cafe"
+    puts "5. ".colorize(:green)+"Mediterranean"
+    puts "6. ".colorize(:light_green)+"American"
+    puts "7. ".colorize(:yellow)+"Mexican"
+    puts "8. ".colorize(:light_yellow)+"Return to main menu"
+    puts ".*.".colorize(:light_black) * 44
 
     input = gets.chomp
 
@@ -81,26 +76,35 @@ class Restaurant < ActiveRecord::Base
     when "8"
       return
     else
-      puts "please select 1-8 please "
-      search_by_cuisine(user)
+      # search_by_cuisine
+      puts "Please select 1-8".bold
     end
 
 
-
+    #gets data from API
     response = RestClient.get("https://developers.zomato.com/api/v2.1/search?entity_id=94741&entity_type=zone&cuisines=#{cuisine}", {'user-key': "#{ENV['API_KEY']}", accept: :json})
     string = response.body
     data = JSON.parse(string)
-    counter = 1
+
+    counter = 1#counter for listing the search results
     puts " "
     puts "Search Results:".bold.colorize(:green)
+    #prints out search result AND saves info into array of restaurant name, location and cuisine
     rest_data = data['restaurants'].map do |rest|
       location = rest['restaurant']['location']['city']
       name = rest['restaurant']['name']
-      puts "#{counter}. #{name}, location: #{location}"
+      puts "#{counter}.".colorize(:green)+" #{name}, location: #{location}"
       counter += 1
       "#{name},#{location},#{cuisine}"
     end
-    puts "* * " * 40
+    puts ".*.".colorize(:light_black) * 44
+    puts " "
+    #if no search results were found, return to selecting a cuisine
+    if rest_data.length == 0
+      puts "No restaurants of that cuisine have been found in your area"
+      search_by_cuisine
+    end
+
     rest_data
 
   end
@@ -109,8 +113,9 @@ class Restaurant < ActiveRecord::Base
   def self.get_rest_info
     rest_data= Restaurant.search_by_cuisine
     puts " "
-    puts "Select Restaurant (1-20)"
+    puts "Select Restaurant (1-20)".bold
     #selects requested cuisine
+
     rest_num = gets.chomp
     rest_num=rest_num.to_i #turns input into integer
     #splits the rest info as it is given by "search_by_cuisine" to name, location, cuisine
@@ -152,5 +157,4 @@ class Restaurant < ActiveRecord::Base
   # end
 
 
-end
 end
