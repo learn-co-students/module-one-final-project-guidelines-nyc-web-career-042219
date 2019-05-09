@@ -12,18 +12,16 @@ class Restaurant < ActiveRecord::Base
   end
 
   def profile
-    puts ""
+    puts "************************"
+    puts "      PROFILE"
+    puts "************************"
     puts ""
     puts "#{self.name}"
-    puts ""
     puts "#{self.address}, #{self.zipcode}"
     puts ""
-    puts "*" * 20
-    puts ""
+    puts "************************"
     puts "Grade: #{self.latest_inspection.grade} - Inspection Date: #{self.latest_inspection.date}"
-    puts ""
-    puts "*" * 20
-    puts ""
+    puts "************************"
   end
 
   def inspection_history
