@@ -17,13 +17,10 @@ class Restaurant < ActiveRecord::Base
     puts "************************"
     puts ""
     puts "#{self.name}"
-    puts "        -"
     puts "#{self.address}, #{self.zipcode}"
     puts ""
     puts "************************"
-    puts ""
     puts "Grade: #{self.latest_inspection.grade} - Inspection Date: #{self.latest_inspection.date}"
-    puts ""
     puts "************************"
   end
 
