@@ -3,12 +3,9 @@ require 'json'
 require 'pry'
 
 def populate_db_from_json(restaurant)
-  #get_restaurant_violations_from_JSON
 
   response_string = RestClient.get("https://data.cityofnewyork.us/api/views/43nn-pn8j/rows.json?boro=MANHATTAN")
   response_hash = JSON.parse(response_string)
-
-  #array of all restaurant inspections
   restaurant_inspections = response_hash["data"]
 
   selected_inspections = restaurant_inspections.select do |r|
