@@ -28,8 +28,6 @@ class Dish < ActiveRecord::Base
       puts "Please select 1 or 2".bold.colorize(:white)
       self.dish_update
     end
-
-
   end
 
 
