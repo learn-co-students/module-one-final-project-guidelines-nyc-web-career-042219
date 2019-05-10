@@ -29,11 +29,11 @@ def get_user
   else
     return User.create(name: user)
   end
-
 end
 
 
 def main_menu(user)
+  
   puts " "
   puts "|+".colorize(:cyan) * 66
   puts "1. ".colorize(:magenta)+"Search for a restaurant by cuisine"
@@ -108,31 +108,31 @@ def dish_cat(user)
 
 end
 
-def rest_search_menu
-  puts " "
-  puts "1. Search for a restaurant by location"
-  puts "2. Search for a restaurant by cuisine"
-  puts "3. Return to main menu"
-  puts "4. Exit"
-  puts " "
-
-  input = gets.chomp
-
-    case input
-    when "1"
-      puts "selected 1"
-    when "2"
-      puts "Enter desired cuisine"
-      cuisine = gets.chomp
-      Restaurant.search_by_cuisine(cuisine)
-    when "3"
-      main_menu
-    when "4"
-      exit
-    else
-      puts "please select 1, 2, 3, or 4".bold
-      main_menu
-    end
-
-
-end
+# def rest_search_menu
+#   puts " "
+#   puts "1. Search for a restaurant by location"
+#   puts "2. Search for a restaurant by cuisine"
+#   puts "3. Return to main menu"
+#   puts "4. Exit"
+#   puts " "
+#
+#   input = gets.chomp
+#
+#     case input
+#     when "1"
+#       puts "selected 1"
+#     when "2"
+#       puts "Enter desired cuisine"
+#       cuisine = gets.chomp
+#       Restaurant.search_by_cuisine(cuisine)
+#     when "3"
+#       main_menu
+#     when "4"
+#       exit
+#     else
+#       puts "please select 1, 2, 3, or 4".bold
+#       main_menu
+#     end
+#
+#
+# end

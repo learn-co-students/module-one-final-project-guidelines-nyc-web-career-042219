@@ -19,7 +19,30 @@ class Restaurant < ActiveRecord::Base
     Restaurant.search_by_cuisine(user)
     main_menu(user)
   end
-  
+
+  def self.send_cuisine_to_api(cuisine, cuisine_name)#gets data from API according to cuisine
+    response = RestClient.get("https://developers.zomato.com/api/v2.1/search?entity_id=94741&entity_type=zone&cuisines=#{cuisine}", {'user-key': "#{ENV['API_KEY']}", accept: :json})
+    string = response.body
+    data = JSON.parse(string)
+
+    counter = 1#counter for listing the search results
+    puts " "
+    puts "Search Results:".bold.colorize(:green)
+    #prints out search result AND saves info into array of restaurant name, location and cuisine
+    rest_data = data['restaurants'].map do |rest|
+      location = rest['restaurant']['location']['city']
+      name = rest['restaurant']['name']
+      puts "#{counter}.".colorize(:green)+" #{name}, location: #{location}"
+      counter += 1
+      "#{name},#{location},#{cuisine_name}"
+    end
+    puts ".*.".colorize(:light_black) * 44
+    puts " "
+    #if no search results were found, return to selecting a cuisine
+
+    rest_data
+  end
+
   def self.search_by_cuisine(user)
 
     puts ".*.".colorize(:light_black) * 44
@@ -41,65 +64,58 @@ class Restaurant < ActiveRecord::Base
     when "1"
       cuisine = 55
       cuisine_name = "Italian"
+      rest_data = self.send_cuisine_to_api(cuisine, cuisine_name)
     when "2"
       cuisine = 3
       cuisine_name = "Asian"
+      rest_data = self.send_cuisine_to_api(cuisine, cuisine_name)
     when "3"
       cuisine = 7
       cuisine_name = "Indian"
+      rest_data = self.send_cuisine_to_api(cuisine, cuisine_name)
     when "4"
       cuisine = 30
       cuisine_name = "Cafe"
+      rest_data = self.send_cuisine_to_api(cuisine, cuisine_name)
     when "5"
       cuisine = 70
       cuisine_name = "Mediterranean"
+      rest_data = self.send_cuisine_to_api(cuisine, cuisine_name)
     when "6"
       cuisine = 1
       cuisine_name = "American"
+      rest_data = self.send_cuisine_to_api(cuisine, cuisine_name)
     when "7"
       cuisine = 136
       cuisine_name = "Mexican"
+      rest_data = self.send_cuisine_to_api(cuisine, cuisine_name)
     when "8"
       main_menu(user)
     else
       puts "Please select 1-8".bold
-      self.search_by_cuisine(user)
+      rest_data = self.search_by_cuisine(user)
     end
 
 
-    #gets data from API according to cuisine
-    response = RestClient.get("https://developers.zomato.com/api/v2.1/search?entity_id=94741&entity_type=zone&cuisines=#{cuisine}", {'user-key': "#{ENV['API_KEY']}", accept: :json})
-    string = response.body
-    data = JSON.parse(string)
 
-    counter = 1#counter for listing the search results
-    puts " "
-    puts "Search Results:".bold.colorize(:green)
-    #prints out search result AND saves info into array of restaurant name, location and cuisine
-    rest_data = data['restaurants'].map do |rest|
-      location = rest['restaurant']['location']['city']
-      name = rest['restaurant']['name']
-      puts "#{counter}.".colorize(:green)+" #{name}, location: #{location}"
-      counter += 1
-      "#{name},#{location},#{cuisine_name}"
-    end
-    puts ".*.".colorize(:light_black) * 44
-    puts " "
-    #if no search results were found, return to selecting a cuisine
-    if rest_data.length == 0
-      puts "No restaurants of that cuisine have been found in your area"
-      self.search_by_cuisine(user)
-    end
+
+
 
     rest_data
+
 
   end
 
 
   def self.get_rest_info(user)
     rest_data= Restaurant.search_by_cuisine(user)
+    # binding.pry
+    if rest_data.length == 0
+      puts "No restaurants of that cuisine have been found in your area"
+      rest_data = self.search_by_cuisine(user)
+    end
     puts " "
-    puts "Select Restaurant (1-20)".bold
+    puts "Select Restaurant (1-#{rest_data.length})".bold
     #selects requested cuisine
 
     rest_num = gets.chomp
@@ -110,6 +126,7 @@ class Restaurant < ActiveRecord::Base
     #At this point I have all data I need to create or find the restaurant in the table database
     rest = Restaurant.find_or_create_by(name: rest_info[0], cuisine: rest_info[2], location: rest_info[1])
     rest.id
+
   end
 
 

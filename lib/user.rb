@@ -19,7 +19,10 @@ class User < ActiveRecord::Base
     rest_id = Restaurant.get_rest_info(self)
     name = Dish.get_dish_name #retrieves dish name from user
     category = Dish.get_dish_category #retrieves dish category from user
+
+
     dish= Dish.create(name: name, user_id: self.id, restaurant_id: rest_id, category: category)
+
     puts "Your "+"new favorite dish".bold.colorize(:light_white)+" of "+"#{name}".bold.colorize(:green)+" at "+"#{Restaurant.find(rest_id).name}".bold+" has been added!"
   end
 
